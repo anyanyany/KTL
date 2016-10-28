@@ -1,0 +1,2 @@
+# KTL
+Kombinatoryczna Teoria Liczb
