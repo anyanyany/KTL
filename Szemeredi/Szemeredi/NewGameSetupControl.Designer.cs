@@ -142,9 +142,10 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Caviar Dreams", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(494, 60);
+            this.label1.Size = new System.Drawing.Size(500, 60);
             this.label1.TabIndex = 0;
             this.label1.Text = "N O W A   G R A";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -269,9 +270,10 @@
             this.startGameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.startGameButton.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.startGameButton.ForeColor = System.Drawing.Color.White;
-            this.startGameButton.Location = new System.Drawing.Point(3, 343);
+            this.startGameButton.Location = new System.Drawing.Point(0, 340);
+            this.startGameButton.Margin = new System.Windows.Forms.Padding(0);
             this.startGameButton.Name = "startGameButton";
-            this.startGameButton.Size = new System.Drawing.Size(494, 54);
+            this.startGameButton.Size = new System.Drawing.Size(500, 60);
             this.startGameButton.TabIndex = 4;
             this.startGameButton.Text = "S T A R T";
             this.startGameButton.UseVisualStyleBackColor = false;
@@ -504,6 +506,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.mainPanel);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "NewGameSetupControl";
             this.Size = new System.Drawing.Size(500, 400);
             this.mainPanel.ResumeLayout(false);

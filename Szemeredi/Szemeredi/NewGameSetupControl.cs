@@ -24,7 +24,13 @@ namespace Szemeredi
 
         private void startGameButton_Click(object sender, EventArgs e)
         {
-            //TODO
+            if (playerColorButton == null || computerColorButton == null)
+            {
+                MessageBox.Show("Nie wybrano kolorów graczy!", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Form1.showGameWindow((int)NNumericUpDown.Value, (int)KNumericUpDown.Value, playerRadioButton.Checked,playerColorButton.BackColor, computerColorButton.BackColor);
         }
 
         private void playerColorButton_Click(object sender, EventArgs e)

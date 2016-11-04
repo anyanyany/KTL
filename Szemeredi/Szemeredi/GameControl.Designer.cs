@@ -35,11 +35,11 @@
             this.actionLabel = new System.Windows.Forms.Label();
             this.roundLabel = new System.Windows.Forms.Label();
             this.playerPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.playersNumbers = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.playersNumbersLabel = new System.Windows.Forms.Label();
+            this.playerLabel = new System.Windows.Forms.Label();
             this.computerPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.computersNumbers = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.computersNumbersLabel = new System.Windows.Forms.Label();
+            this.computerLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.firstNumberButton = new System.Windows.Forms.Button();
@@ -154,8 +154,8 @@
             this.playerPanel.ColumnCount = 2;
             this.playerPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.playerPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85F));
-            this.playerPanel.Controls.Add(this.playersNumbers, 0, 0);
-            this.playerPanel.Controls.Add(this.label2, 0, 0);
+            this.playerPanel.Controls.Add(this.playersNumbersLabel, 0, 0);
+            this.playerPanel.Controls.Add(this.playerLabel, 0, 0);
             this.playerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.playerPanel.Location = new System.Drawing.Point(0, 450);
             this.playerPanel.Margin = new System.Windows.Forms.Padding(0);
@@ -165,43 +165,43 @@
             this.playerPanel.Size = new System.Drawing.Size(900, 90);
             this.playerPanel.TabIndex = 1;
             // 
-            // playersNumbers
+            // playersNumbersLabel
             // 
-            this.playersNumbers.AutoSize = true;
-            this.playersNumbers.BackColor = System.Drawing.Color.Chartreuse;
-            this.playersNumbers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.playersNumbers.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.playersNumbers.ForeColor = System.Drawing.Color.Black;
-            this.playersNumbers.Location = new System.Drawing.Point(138, 0);
-            this.playersNumbers.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.playersNumbers.Name = "playersNumbers";
-            this.playersNumbers.Size = new System.Drawing.Size(762, 90);
-            this.playersNumbers.TabIndex = 3;
-            this.playersNumbers.Text = "8  12  15  47";
-            this.playersNumbers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.playersNumbersLabel.AutoSize = true;
+            this.playersNumbersLabel.BackColor = System.Drawing.Color.White;
+            this.playersNumbersLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.playersNumbersLabel.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.playersNumbersLabel.ForeColor = System.Drawing.Color.Black;
+            this.playersNumbersLabel.Location = new System.Drawing.Point(138, 0);
+            this.playersNumbersLabel.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.playersNumbersLabel.Name = "playersNumbersLabel";
+            this.playersNumbersLabel.Size = new System.Drawing.Size(762, 90);
+            this.playersNumbersLabel.TabIndex = 3;
+            this.playersNumbersLabel.Text = "8  12  15  47";
+            this.playersNumbersLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label2
+            // playerLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Chartreuse;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(0, 0);
-            this.label2.Margin = new System.Windows.Forms.Padding(0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(135, 90);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "gracz";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.playerLabel.AutoSize = true;
+            this.playerLabel.BackColor = System.Drawing.Color.White;
+            this.playerLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.playerLabel.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.playerLabel.ForeColor = System.Drawing.Color.Black;
+            this.playerLabel.Location = new System.Drawing.Point(0, 0);
+            this.playerLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.playerLabel.Name = "playerLabel";
+            this.playerLabel.Size = new System.Drawing.Size(135, 90);
+            this.playerLabel.TabIndex = 2;
+            this.playerLabel.Text = "gracz";
+            this.playerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // computerPanel
             // 
             this.computerPanel.ColumnCount = 2;
             this.computerPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.computerPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85F));
-            this.computerPanel.Controls.Add(this.computersNumbers, 0, 0);
-            this.computerPanel.Controls.Add(this.label1, 0, 0);
+            this.computerPanel.Controls.Add(this.computersNumbersLabel, 0, 0);
+            this.computerPanel.Controls.Add(this.computerLabel, 0, 0);
             this.computerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.computerPanel.Location = new System.Drawing.Point(0, 0);
             this.computerPanel.Margin = new System.Windows.Forms.Padding(0);
@@ -213,35 +213,35 @@
             this.computerPanel.Size = new System.Drawing.Size(900, 90);
             this.computerPanel.TabIndex = 0;
             // 
-            // computersNumbers
+            // computersNumbersLabel
             // 
-            this.computersNumbers.AutoSize = true;
-            this.computersNumbers.BackColor = System.Drawing.Color.DeepPink;
-            this.computersNumbers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.computersNumbers.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.computersNumbers.ForeColor = System.Drawing.Color.Black;
-            this.computersNumbers.Location = new System.Drawing.Point(138, 0);
-            this.computersNumbers.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.computersNumbers.Name = "computersNumbers";
-            this.computersNumbers.Size = new System.Drawing.Size(762, 90);
-            this.computersNumbers.TabIndex = 2;
-            this.computersNumbers.Text = "2  5  22  30";
-            this.computersNumbers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.computersNumbersLabel.AutoSize = true;
+            this.computersNumbersLabel.BackColor = System.Drawing.Color.White;
+            this.computersNumbersLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.computersNumbersLabel.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.computersNumbersLabel.ForeColor = System.Drawing.Color.Black;
+            this.computersNumbersLabel.Location = new System.Drawing.Point(138, 0);
+            this.computersNumbersLabel.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.computersNumbersLabel.Name = "computersNumbersLabel";
+            this.computersNumbersLabel.Size = new System.Drawing.Size(762, 90);
+            this.computersNumbersLabel.TabIndex = 2;
+            this.computersNumbersLabel.Text = "2  5  22  30";
+            this.computersNumbersLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label1
+            // computerLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.DeepPink;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 90);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "komputer";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.computerLabel.AutoSize = true;
+            this.computerLabel.BackColor = System.Drawing.Color.White;
+            this.computerLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.computerLabel.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.computerLabel.ForeColor = System.Drawing.Color.Black;
+            this.computerLabel.Location = new System.Drawing.Point(0, 0);
+            this.computerLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.computerLabel.Name = "computerLabel";
+            this.computerLabel.Size = new System.Drawing.Size(135, 90);
+            this.computerLabel.TabIndex = 1;
+            this.computerLabel.Text = "komputer";
+            this.computerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel2
             // 
@@ -335,10 +335,10 @@
         private System.Windows.Forms.TableLayoutPanel computerPanel;
         private System.Windows.Forms.TableLayoutPanel bottomPanel;
         private System.Windows.Forms.TableLayoutPanel playerPanel;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label computersNumbers;
-        private System.Windows.Forms.Label playersNumbers;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label computerLabel;
+        private System.Windows.Forms.Label computersNumbersLabel;
+        private System.Windows.Forms.Label playersNumbersLabel;
+        private System.Windows.Forms.Label playerLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel buttonsPanel;
         private System.Windows.Forms.Label roundLabel;
