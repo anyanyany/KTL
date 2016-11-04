@@ -58,6 +58,7 @@
     <Compile Include="GameControl.Designer.cs">
       <DependentUpon>GameControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameState.cs" />
     <Compile Include="NewGameSetupControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

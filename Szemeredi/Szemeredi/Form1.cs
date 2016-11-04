@@ -14,13 +14,13 @@ namespace Szemeredi
     {
         static NewGameSetupControl newGameControl;
         static GameControl gameControl;
-        
+
         public Form1()
         {
             InitializeComponent();
             newGameControl = new NewGameSetupControl();
             gameControl = new GameControl();
-  
+
             mainPanel.Controls.Add(newGameControl);
             mainPanel.Controls.Add(gameControl);
             newGameControl.Anchor = AnchorStyles.None;
@@ -37,7 +37,7 @@ namespace Szemeredi
             newGameControl.Visible = false;
             gameControl.Enabled = true;
             gameControl.Visible = true;
-            gameControl.Reset(n, playerColor, computerColor);
+            gameControl.Reset(n, k, playerFirstMove, playerColor, computerColor);
         }
 
         private void nowaGraToolStripMenuItem_Click(object sender, EventArgs e)
