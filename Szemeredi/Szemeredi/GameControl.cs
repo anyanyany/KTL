@@ -15,13 +15,13 @@ namespace Szemeredi
         public GameControl()
         {
             InitializeComponent();
-            AddButtons(400);
+            AddButtons(100);
         }
 
         private void AddButtons(int n)
         {
             int dim = (int)Math.Ceiling(Math.Sqrt(n/2));
-            int over = (int)Math.Floor((double)(2 * dim * dim - n / (2 * dim)));
+            int over = (int)Math.Floor((double)((2 * dim * dim - n) / (2 * dim)));
             int columns = 2 * dim;
             int rows = dim - over;
             buttonsPanel.ColumnCount = columns;
