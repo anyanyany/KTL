@@ -16,6 +16,7 @@ namespace Szemeredi
         private Button secondNumber;
         private Color playerColor;
         private Color computerColor;
+        private int round;
 
         public GameControl()
         {
@@ -24,6 +25,7 @@ namespace Szemeredi
             secondNumber = null;
             playerColor = Color.Empty;
             computerColor = Color.Empty;
+            round = 1;
         }
 
         public void Reset(int n, int k, bool playerFirstMove, Color _playerColor, Color _computerColor)
@@ -32,7 +34,17 @@ namespace Szemeredi
             GameState.Instance.n = n;
             playerColor = _playerColor;
             computerColor = _computerColor;
-            buttonsPanel.Controls.Clear();
+            GameState.Instance.currentMove = playerFirstMove ? GameState.Movement.PlayersChoice : GameState.Movement.ComputersChoice;
+
+            GameState.Instance.availableNumbers.Clear();
+            GameState.Instance.player.Clear();
+            GameState.Instance.computer.Clear();
+
+            for (int i = 1; i <= n; i++)
+                GameState.Instance.availableNumbers.Add(i);
+
+            firstNumber = null;
+            secondNumber = null;
 
             playerLabel.BackColor = playerColor;
             playersNumbersLabel.BackColor = playerColor;
@@ -40,9 +52,16 @@ namespace Szemeredi
             computersNumbersLabel.BackColor = computerColor;
 
             KLabel.Text = "k = " + k;
+            firstNumberButton.Text = "?";
+            secondNumberButton.Text = "?";
 
-            GameState.Instance.currentMove = playerFirstMove ? GameState.Movement.PlayersChoice : GameState.Movement.ComputersChoice;
+            playersNumbersLabel.Text = "?";
+            computersNumbersLabel.Text = "?";
+            roundLabel.Text = "runda: " + round.ToString();
 
+            updateActionLabel();
+
+            buttonsPanel.Controls.Clear();
             int dim = (int)Math.Ceiling(Math.Sqrt(Math.Ceiling((double)n / 2)));
             int over = (int)Math.Floor((double)((2 * dim * dim - n) / (2 * dim)));
             int columns = 2 * dim;
@@ -75,23 +94,12 @@ namespace Szemeredi
 
         private void numberButton_Click(object sender, EventArgs e)
         {
-            //TODO: if currentMovement = 1 or 2 ????
+            if (GameState.Instance.currentMove != GameState.Movement.PlayersChoice && GameState.Instance.currentMove != GameState.Movement.ComputersChoice)
+                return;
+
             Button chosenButton = (Button)sender;
-            if (firstNumber == chosenButton)
-            {
-                firstNumber.BackColor = Color.White;
-                firstNumber = null;
-                firstNumberButton.Text = "?";
-                //TODO: currentMovement = 1 or 2
-            }
-            else if (secondNumber == chosenButton)
-            {
-                secondNumber.BackColor = Color.White;
-                secondNumber = null;
-                secondNumberButton.Text = "?";
-                //TODO: currentMovement = 1 or 2
-            }
-            else if (firstNumber == null)
+
+            if (firstNumber == null)
             {
                 firstNumber = chosenButton;
                 firstNumber.BackColor = Color.DimGray;
@@ -103,32 +111,116 @@ namespace Szemeredi
                 secondNumber.BackColor = Color.DimGray;
                 secondNumberButton.Text = secondNumber.Text;
             }
-
-            if(firstNumber!=null && secondNumber!=null)
+            if (firstNumber != null && secondNumber != null)
             {
-                //TODO: currentMovement = 3 or 4
+                if (GameState.Instance.currentMove == GameState.Movement.PlayersChoice)
+                    GameState.Instance.currentMove = GameState.Movement.ComputerColouring;
+                else if (GameState.Instance.currentMove == GameState.Movement.ComputersChoice)
+                    GameState.Instance.currentMove = GameState.Movement.PlayerColouring;
             }
-
+            updateActionLabel();
         }
 
         private void chooseNumberToColourButton_Click(object sender, EventArgs e)
         {
-            //TODO: if currentMovement = 3 or 4 
-            Button chosenButton = (Button)sender;
-            Color currentColor = playerColor;
-            Color secondColor = computerColor;
+            if (GameState.Instance.currentMove != GameState.Movement.PlayerColouring && GameState.Instance.currentMove != GameState.Movement.ComputerColouring)
+                return;
 
-            if (chosenButton==firstNumberButton)
+            Button chosenButton = (Button)sender;
+            Color firstColor = Color.Empty;
+            Color secondColor = Color.Empty;
+            int number1 = 0, number2 = 0;
+
+            if (GameState.Instance.currentMove == GameState.Movement.PlayerColouring)
             {
-                firstNumber.BackColor = currentColor;
+                firstColor = playerColor;
+                secondColor = computerColor;
+            }
+            else if (GameState.Instance.currentMove == GameState.Movement.ComputerColouring)
+            {
+                firstColor = computerColor;
+                secondColor = playerColor;
+            }
+
+            if (chosenButton == firstNumberButton)
+            {
+                firstNumber.BackColor = firstColor;
                 secondNumber.BackColor = secondColor;
+                number1 = int.Parse(firstNumber.Text);
+                number2 = int.Parse(secondNumber.Text);
             }
-            else if(chosenButton==secondNumberButton)
+            else if (chosenButton == secondNumberButton)
             {
-                secondNumber.BackColor = currentColor;
+                secondNumber.BackColor = firstColor;
                 firstNumber.BackColor = secondColor;
+                number1 = int.Parse(secondNumber.Text);
+                number2 = int.Parse(firstNumber.Text);
             }
-            //GameState.Instance.currentMove = GameState.Movement.PlayersChoice;
+
+            if (GameState.Instance.currentMove == GameState.Movement.PlayerColouring)
+            {
+                GameState.Instance.currentMove = GameState.Movement.PlayersChoice;
+                GameState.Instance.player.Add(number1);
+                GameState.Instance.computer.Add(number2);
+            }
+            else if (GameState.Instance.currentMove == GameState.Movement.ComputerColouring)
+            {
+                GameState.Instance.currentMove = GameState.Movement.ComputersChoice;
+                GameState.Instance.computer.Add(number1);
+                GameState.Instance.player.Add(number2);
+            }
+
+            GameState.Instance.availableNumbers.Remove(number1);
+            GameState.Instance.availableNumbers.Remove(number2);
+            updateNumbersLabels();
+            //CheckWinner();
+            nextRound();
+            updateActionLabel();
+        }
+
+        private void nextRound()
+        {
+            firstNumber = null;
+            secondNumber = null;
+            firstNumberButton.Text = "?";
+            secondNumberButton.Text = "?";
+            round++;
+            roundLabel.Text = "runda: " + round.ToString();
+        }
+
+        private void updateActionLabel()
+        {
+            switch (GameState.Instance.currentMove)
+            {
+                case GameState.Movement.PlayersChoice:
+                    actionLabel.Text = "ruch: gracz wybiera dwie liczby";
+                    break;
+                case GameState.Movement.ComputersChoice:
+                    actionLabel.Text = "ruch: komputer wybiera dwie liczby";
+                    break;
+                case GameState.Movement.PlayerColouring:
+                    actionLabel.Text = "ruch: gracz koloruje liczbę";
+                    break;
+                case GameState.Movement.ComputerColouring:
+                    actionLabel.Text = "ruch: komputer koloruje liczbę";
+                    break;
+            }
+        }
+
+        private void updateNumbersLabels()
+        {
+            GameState.Instance.player.Sort();
+            GameState.Instance.computer.Sort();
+
+            string numbers = "";
+            foreach (int i in GameState.Instance.player)
+                numbers = numbers + " " + i.ToString();
+            playersNumbersLabel.Text = numbers;
+
+            numbers = "";
+            foreach (int i in GameState.Instance.computer)
+                numbers = numbers + " " + i.ToString();
+            computersNumbersLabel.Text = numbers;
         }
     }
 }

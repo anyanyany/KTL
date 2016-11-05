@@ -25,7 +25,12 @@ namespace Szemeredi
         public int[] chosen { get; set; }
         public Movement currentMove { get; set; }
 
-        private GameState() { }
+        private GameState()
+        {
+            availableNumbers = new List<int>();
+            player = new List<int>();
+            computer = new List<int>();
+        }
 
         public static GameState Instance
         {
