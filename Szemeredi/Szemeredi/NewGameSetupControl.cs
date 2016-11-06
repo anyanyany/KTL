@@ -30,7 +30,7 @@ namespace Szemeredi
                 return;
             }
 
-            Form1.showGameWindow((int)NNumericUpDown.Value, (int)KNumericUpDown.Value, playerRadioButton.Checked,playerColorButton.BackColor, computerColorButton.BackColor);
+            Form1.showGameWindow((int)NNumericUpDown.Value, (int)KNumericUpDown.Value, playerRadioButton.Checked,playerColorButton.BackColor, computerColorButton.BackColor, easyLevelRadioButton.Checked);
         }
 
         private void playerColorButton_Click(object sender, EventArgs e)

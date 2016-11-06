@@ -14,8 +14,6 @@ namespace Szemeredi
     {
         private Button firstNumber;
         private Button secondNumber;
-        private Color playerColor;
-        private Color computerColor;
         private int round;
 
         public GameControl()
@@ -23,22 +21,21 @@ namespace Szemeredi
             InitializeComponent();
             firstNumber = null;
             secondNumber = null;
-            playerColor = Color.Empty;
-            computerColor = Color.Empty;
             round = 1;
         }
 
-        public void Reset(int n, int k, bool playerFirstMove, Color _playerColor, Color _computerColor)
+        public void Reset(int n, int k, bool playerFirstMove, Color playerColor, Color computerColor, bool easyLevel)
         {
             GameState.Instance.k = k;
             GameState.Instance.n = n;
-            playerColor = _playerColor;
-            computerColor = _computerColor;
-            GameState.Instance.currentMove = playerFirstMove ? GameState.Movement.PlayersChoice : GameState.Movement.ComputersChoice;
-
+            GameState.Instance.playerColor = playerColor;
+            GameState.Instance.computerColor = computerColor;
             GameState.Instance.availableNumbers.Clear();
             GameState.Instance.player.Clear();
             GameState.Instance.computer.Clear();
+            GameState.Instance.chosen = new int[2];
+            GameState.Instance.currentMove = playerFirstMove ? GameState.Movement.PlayersChoice : GameState.Movement.ComputersChoice;
+            GameState.Instance.level = easyLevel ? GameState.Level.Easy : GameState.Level.Hard;
 
             for (int i = 1; i <= n; i++)
                 GameState.Instance.availableNumbers.Add(i);
@@ -51,7 +48,8 @@ namespace Szemeredi
             computerLabel.BackColor = computerColor;
             computersNumbersLabel.BackColor = computerColor;
 
-            KLabel.Text = "k = " + k;
+            KLabel.Text = "k: " + k;
+            levelLabel.Text= easyLevel ? "łatwy" : "trudny";
             firstNumberButton.Text = "?";
             secondNumberButton.Text = "?";
 
@@ -104,12 +102,14 @@ namespace Szemeredi
                 firstNumber = chosenButton;
                 firstNumber.BackColor = Color.DimGray;
                 firstNumberButton.Text = firstNumber.Text;
+                GameState.Instance.chosen[0] = int.Parse(firstNumber.Text);
             }
-            else if (secondNumber == null)
+            else if (secondNumber == null && chosenButton!=firstNumber)
             {
                 secondNumber = chosenButton;
                 secondNumber.BackColor = Color.DimGray;
                 secondNumberButton.Text = secondNumber.Text;
+                GameState.Instance.chosen[0] = int.Parse(secondNumber.Text);
             }
             if (firstNumber != null && secondNumber != null)
             {
@@ -133,13 +133,13 @@ namespace Szemeredi
 
             if (GameState.Instance.currentMove == GameState.Movement.PlayerColouring)
             {
-                firstColor = playerColor;
-                secondColor = computerColor;
+                firstColor = GameState.Instance.playerColor;
+                secondColor = GameState.Instance.computerColor;
             }
             else if (GameState.Instance.currentMove == GameState.Movement.ComputerColouring)
             {
-                firstColor = computerColor;
-                secondColor = playerColor;
+                firstColor = GameState.Instance.computerColor;
+                secondColor = GameState.Instance.playerColor;
             }
 
             if (chosenButton == firstNumberButton)
@@ -172,6 +172,9 @@ namespace Szemeredi
 
             GameState.Instance.availableNumbers.Remove(number1);
             GameState.Instance.availableNumbers.Remove(number2);
+
+            firstNumber.Enabled = false;
+            secondNumber.Enabled = false;
             updateNumbersLabels();
             //CheckWinner();
             nextRound();
@@ -182,6 +185,7 @@ namespace Szemeredi
         {
             firstNumber = null;
             secondNumber = null;
+            GameState.Instance.chosen = new int[2];
             firstNumberButton.Text = "?";
             secondNumberButton.Text = "?";
             round++;

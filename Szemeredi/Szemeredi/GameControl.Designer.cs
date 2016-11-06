@@ -36,6 +36,7 @@
             this.firstNumberButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.bottomPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.KLabel = new System.Windows.Forms.Label();
             this.actionLabel = new System.Windows.Forms.Label();
             this.roundLabel = new System.Windows.Forms.Label();
             this.playerPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -44,7 +45,7 @@
             this.computerPanel = new System.Windows.Forms.TableLayoutPanel();
             this.computersNumbersLabel = new System.Windows.Forms.Label();
             this.computerLabel = new System.Windows.Forms.Label();
-            this.KLabel = new System.Windows.Forms.Label();
+            this.levelLabel = new System.Windows.Forms.Label();
             this.mainPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -173,12 +174,14 @@
             // 
             // bottomPanel
             // 
-            this.bottomPanel.ColumnCount = 3;
+            this.bottomPanel.ColumnCount = 4;
             this.bottomPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13F));
-            this.bottomPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77F));
-            this.bottomPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.bottomPanel.Controls.Add(this.KLabel, 0, 0);
-            this.bottomPanel.Controls.Add(this.actionLabel, 0, 0);
+            this.bottomPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67F));
+            this.bottomPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12F));
+            this.bottomPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8F));
+            this.bottomPanel.Controls.Add(this.levelLabel, 2, 0);
+            this.bottomPanel.Controls.Add(this.KLabel, 3, 0);
+            this.bottomPanel.Controls.Add(this.actionLabel, 1, 0);
             this.bottomPanel.Controls.Add(this.roundLabel, 0, 0);
             this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bottomPanel.Location = new System.Drawing.Point(0, 540);
@@ -188,6 +191,21 @@
             this.bottomPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.bottomPanel.Size = new System.Drawing.Size(900, 60);
             this.bottomPanel.TabIndex = 2;
+            // 
+            // KLabel
+            // 
+            this.KLabel.AutoSize = true;
+            this.KLabel.BackColor = System.Drawing.Color.DarkGray;
+            this.KLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.KLabel.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.KLabel.ForeColor = System.Drawing.Color.White;
+            this.KLabel.Location = new System.Drawing.Point(831, 3);
+            this.KLabel.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.KLabel.Name = "KLabel";
+            this.KLabel.Size = new System.Drawing.Size(69, 57);
+            this.KLabel.TabIndex = 5;
+            this.KLabel.Text = "k =";
+            this.KLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // actionLabel
             // 
@@ -199,7 +217,7 @@
             this.actionLabel.Location = new System.Drawing.Point(120, 3);
             this.actionLabel.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.actionLabel.Name = "actionLabel";
-            this.actionLabel.Size = new System.Drawing.Size(690, 57);
+            this.actionLabel.Size = new System.Drawing.Size(600, 57);
             this.actionLabel.TabIndex = 4;
             this.actionLabel.Text = "ruch: gracz wybiera dwie liczby";
             this.actionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -313,20 +331,20 @@
             this.computerLabel.Text = "komputer";
             this.computerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // KLabel
+            // levelLabel
             // 
-            this.KLabel.AutoSize = true;
-            this.KLabel.BackColor = System.Drawing.Color.DarkGray;
-            this.KLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.KLabel.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.KLabel.ForeColor = System.Drawing.Color.White;
-            this.KLabel.Location = new System.Drawing.Point(813, 3);
-            this.KLabel.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.KLabel.Name = "KLabel";
-            this.KLabel.Size = new System.Drawing.Size(87, 57);
-            this.KLabel.TabIndex = 5;
-            this.KLabel.Text = "k =";
-            this.KLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.levelLabel.AutoSize = true;
+            this.levelLabel.BackColor = System.Drawing.Color.DarkGray;
+            this.levelLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.levelLabel.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.levelLabel.ForeColor = System.Drawing.Color.White;
+            this.levelLabel.Location = new System.Drawing.Point(723, 3);
+            this.levelLabel.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.levelLabel.Name = "levelLabel";
+            this.levelLabel.Size = new System.Drawing.Size(105, 57);
+            this.levelLabel.TabIndex = 6;
+            this.levelLabel.Text = "poziom";
+            this.levelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // GameControl
             // 
@@ -368,5 +386,6 @@
         private System.Windows.Forms.Button firstNumberButton;
         private System.Windows.Forms.Button secondNumberButton;
         private System.Windows.Forms.Label KLabel;
+        private System.Windows.Forms.Label levelLabel;
     }
 }

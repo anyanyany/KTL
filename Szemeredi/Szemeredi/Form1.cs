@@ -31,13 +31,13 @@ namespace Szemeredi
             gameControl.Visible = false;
         }
 
-        public static void showGameWindow(int n, int k, bool playerFirstMove, Color playerColor, Color computerColor)
+        public static void showGameWindow(int n, int k, bool playerFirstMove, Color playerColor, Color computerColor, bool easyLevel)
         {
             newGameControl.Enabled = false;
             newGameControl.Visible = false;
             gameControl.Enabled = true;
             gameControl.Visible = true;
-            gameControl.Reset(n, k, playerFirstMove, playerColor, computerColor);
+            gameControl.Reset(n, k, playerFirstMove, playerColor, computerColor, easyLevel);
         }
 
         private void nowaGraToolStripMenuItem_Click(object sender, EventArgs e)

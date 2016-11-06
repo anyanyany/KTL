@@ -54,6 +54,10 @@
             this.playerColor1Button = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.levelPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.easyLevelRadioButton = new System.Windows.Forms.RadioButton();
+            this.hardLevelRadioButton = new System.Windows.Forms.RadioButton();
             this.mainPanel.SuspendLayout();
             this.defineKPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.KNumericUpDown)).BeginInit();
@@ -61,6 +65,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.NNumericUpDown)).BeginInit();
             this.firstMovePanel.SuspendLayout();
             this.chooseColorsPanel.SuspendLayout();
+            this.levelPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -72,19 +77,21 @@
             this.mainPanel.Controls.Add(this.label1, 0, 0);
             this.mainPanel.Controls.Add(this.defineNPanel, 0, 1);
             this.mainPanel.Controls.Add(this.firstMovePanel, 0, 3);
-            this.mainPanel.Controls.Add(this.startGameButton, 0, 5);
+            this.mainPanel.Controls.Add(this.startGameButton, 0, 6);
             this.mainPanel.Controls.Add(this.chooseColorsPanel, 0, 4);
+            this.mainPanel.Controls.Add(this.levelPanel, 0, 5);
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.RowCount = 6;
-            this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.mainPanel.Size = new System.Drawing.Size(500, 400);
+            this.mainPanel.RowCount = 7;
+            this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
+            this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13F));
+            this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13F));
+            this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13F));
+            this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23F));
+            this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13F));
+            this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13F));
+            this.mainPanel.Size = new System.Drawing.Size(500, 450);
             this.mainPanel.TabIndex = 0;
             // 
             // defineKPanel
@@ -95,11 +102,11 @@
             this.defineKPanel.Controls.Add(this.label3, 0, 0);
             this.defineKPanel.Controls.Add(this.KNumericUpDown, 1, 0);
             this.defineKPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.defineKPanel.Location = new System.Drawing.Point(3, 123);
+            this.defineKPanel.Location = new System.Drawing.Point(3, 115);
             this.defineKPanel.Name = "defineKPanel";
             this.defineKPanel.RowCount = 1;
             this.defineKPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.defineKPanel.Size = new System.Drawing.Size(494, 54);
+            this.defineKPanel.Size = new System.Drawing.Size(494, 52);
             this.defineKPanel.TabIndex = 2;
             // 
             // label3
@@ -111,7 +118,7 @@
             this.label3.ForeColor = System.Drawing.Color.DimGray;
             this.label3.Location = new System.Drawing.Point(3, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(241, 54);
+            this.label3.Size = new System.Drawing.Size(241, 52);
             this.label3.TabIndex = 1;
             this.label3.Text = "k = ";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -120,7 +127,7 @@
             // 
             this.KNumericUpDown.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.KNumericUpDown.Font = new System.Drawing.Font("Caviar Dreams", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.KNumericUpDown.Location = new System.Drawing.Point(250, 11);
+            this.KNumericUpDown.Location = new System.Drawing.Point(250, 10);
             this.KNumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
@@ -145,7 +152,7 @@
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(500, 60);
+            this.label1.Size = new System.Drawing.Size(500, 54);
             this.label1.TabIndex = 0;
             this.label1.Text = "N O W A   G R A";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -158,11 +165,11 @@
             this.defineNPanel.Controls.Add(this.label2, 0, 0);
             this.defineNPanel.Controls.Add(this.NNumericUpDown, 1, 0);
             this.defineNPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.defineNPanel.Location = new System.Drawing.Point(3, 63);
+            this.defineNPanel.Location = new System.Drawing.Point(3, 57);
             this.defineNPanel.Name = "defineNPanel";
             this.defineNPanel.RowCount = 1;
             this.defineNPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.defineNPanel.Size = new System.Drawing.Size(494, 54);
+            this.defineNPanel.Size = new System.Drawing.Size(494, 52);
             this.defineNPanel.TabIndex = 1;
             // 
             // label2
@@ -174,7 +181,7 @@
             this.label2.ForeColor = System.Drawing.Color.DimGray;
             this.label2.Location = new System.Drawing.Point(3, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(241, 54);
+            this.label2.Size = new System.Drawing.Size(241, 52);
             this.label2.TabIndex = 1;
             this.label2.Text = "n = ";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -183,7 +190,7 @@
             // 
             this.NNumericUpDown.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.NNumericUpDown.Font = new System.Drawing.Font("Caviar Dreams", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.NNumericUpDown.Location = new System.Drawing.Point(250, 11);
+            this.NNumericUpDown.Location = new System.Drawing.Point(250, 10);
             this.NNumericUpDown.Maximum = new decimal(new int[] {
             400,
             0,
@@ -213,11 +220,11 @@
             this.firstMovePanel.Controls.Add(this.label4, 0, 0);
             this.firstMovePanel.Controls.Add(this.playerRadioButton, 1, 0);
             this.firstMovePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.firstMovePanel.Location = new System.Drawing.Point(3, 183);
+            this.firstMovePanel.Location = new System.Drawing.Point(3, 173);
             this.firstMovePanel.Name = "firstMovePanel";
             this.firstMovePanel.RowCount = 1;
             this.firstMovePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.firstMovePanel.Size = new System.Drawing.Size(494, 54);
+            this.firstMovePanel.Size = new System.Drawing.Size(494, 52);
             this.firstMovePanel.TabIndex = 3;
             // 
             // computerRadioButton
@@ -228,7 +235,7 @@
             this.computerRadioButton.ForeColor = System.Drawing.Color.DimGray;
             this.computerRadioButton.Location = new System.Drawing.Point(348, 3);
             this.computerRadioButton.Name = "computerRadioButton";
-            this.computerRadioButton.Size = new System.Drawing.Size(143, 48);
+            this.computerRadioButton.Size = new System.Drawing.Size(143, 46);
             this.computerRadioButton.TabIndex = 4;
             this.computerRadioButton.Text = "komputer";
             this.computerRadioButton.UseVisualStyleBackColor = true;
@@ -242,7 +249,7 @@
             this.label4.ForeColor = System.Drawing.Color.DimGray;
             this.label4.Location = new System.Drawing.Point(3, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(241, 54);
+            this.label4.Size = new System.Drawing.Size(241, 52);
             this.label4.TabIndex = 2;
             this.label4.Text = "pierwszy ruch";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -256,7 +263,7 @@
             this.playerRadioButton.ForeColor = System.Drawing.Color.DimGray;
             this.playerRadioButton.Location = new System.Drawing.Point(250, 3);
             this.playerRadioButton.Name = "playerRadioButton";
-            this.playerRadioButton.Size = new System.Drawing.Size(92, 48);
+            this.playerRadioButton.Size = new System.Drawing.Size(92, 46);
             this.playerRadioButton.TabIndex = 3;
             this.playerRadioButton.TabStop = true;
             this.playerRadioButton.Text = "gracz";
@@ -270,10 +277,10 @@
             this.startGameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.startGameButton.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.startGameButton.ForeColor = System.Drawing.Color.White;
-            this.startGameButton.Location = new System.Drawing.Point(0, 340);
+            this.startGameButton.Location = new System.Drawing.Point(0, 389);
             this.startGameButton.Margin = new System.Windows.Forms.Padding(0);
             this.startGameButton.Name = "startGameButton";
-            this.startGameButton.Size = new System.Drawing.Size(500, 60);
+            this.startGameButton.Size = new System.Drawing.Size(500, 61);
             this.startGameButton.TabIndex = 4;
             this.startGameButton.Text = "S T A R T";
             this.startGameButton.UseVisualStyleBackColor = false;
@@ -303,14 +310,13 @@
             this.chooseColorsPanel.Controls.Add(this.label6, 1, 2);
             this.chooseColorsPanel.Controls.Add(this.label5, 1, 1);
             this.chooseColorsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chooseColorsPanel.Location = new System.Drawing.Point(3, 243);
+            this.chooseColorsPanel.Location = new System.Drawing.Point(3, 231);
             this.chooseColorsPanel.Name = "chooseColorsPanel";
-            this.chooseColorsPanel.RowCount = 4;
-            this.chooseColorsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.chooseColorsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.chooseColorsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.chooseColorsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.chooseColorsPanel.Size = new System.Drawing.Size(494, 94);
+            this.chooseColorsPanel.RowCount = 3;
+            this.chooseColorsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            this.chooseColorsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48F));
+            this.chooseColorsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48F));
+            this.chooseColorsPanel.Size = new System.Drawing.Size(494, 97);
             this.chooseColorsPanel.TabIndex = 5;
             // 
             // computerColor5Button
@@ -322,9 +328,9 @@
             this.computerColor5Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.computerColor5Button.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.computerColor5Button.ForeColor = System.Drawing.Color.White;
-            this.computerColor5Button.Location = new System.Drawing.Point(371, 49);
+            this.computerColor5Button.Location = new System.Drawing.Point(371, 52);
             this.computerColor5Button.Name = "computerColor5Button";
-            this.computerColor5Button.Size = new System.Drawing.Size(43, 31);
+            this.computerColor5Button.Size = new System.Drawing.Size(43, 42);
             this.computerColor5Button.TabIndex = 14;
             this.computerColor5Button.UseVisualStyleBackColor = false;
             this.computerColor5Button.Click += new System.EventHandler(this.computerColorButton_Click);
@@ -338,9 +344,9 @@
             this.playerColor5Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playerColor5Button.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.playerColor5Button.ForeColor = System.Drawing.Color.White;
-            this.playerColor5Button.Location = new System.Drawing.Point(371, 12);
+            this.playerColor5Button.Location = new System.Drawing.Point(371, 6);
             this.playerColor5Button.Name = "playerColor5Button";
-            this.playerColor5Button.Size = new System.Drawing.Size(43, 31);
+            this.playerColor5Button.Size = new System.Drawing.Size(43, 40);
             this.playerColor5Button.TabIndex = 13;
             this.playerColor5Button.UseVisualStyleBackColor = false;
             this.playerColor5Button.Click += new System.EventHandler(this.playerColorButton_Click);
@@ -354,9 +360,9 @@
             this.computerColor4Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.computerColor4Button.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.computerColor4Button.ForeColor = System.Drawing.Color.White;
-            this.computerColor4Button.Location = new System.Drawing.Point(322, 49);
+            this.computerColor4Button.Location = new System.Drawing.Point(322, 52);
             this.computerColor4Button.Name = "computerColor4Button";
-            this.computerColor4Button.Size = new System.Drawing.Size(43, 31);
+            this.computerColor4Button.Size = new System.Drawing.Size(43, 42);
             this.computerColor4Button.TabIndex = 12;
             this.computerColor4Button.UseVisualStyleBackColor = false;
             this.computerColor4Button.Click += new System.EventHandler(this.computerColorButton_Click);
@@ -370,9 +376,9 @@
             this.playerColor4Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playerColor4Button.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.playerColor4Button.ForeColor = System.Drawing.Color.White;
-            this.playerColor4Button.Location = new System.Drawing.Point(322, 12);
+            this.playerColor4Button.Location = new System.Drawing.Point(322, 6);
             this.playerColor4Button.Name = "playerColor4Button";
-            this.playerColor4Button.Size = new System.Drawing.Size(43, 31);
+            this.playerColor4Button.Size = new System.Drawing.Size(43, 40);
             this.playerColor4Button.TabIndex = 11;
             this.playerColor4Button.UseVisualStyleBackColor = false;
             this.playerColor4Button.Click += new System.EventHandler(this.playerColorButton_Click);
@@ -386,9 +392,9 @@
             this.computerColor3Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.computerColor3Button.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.computerColor3Button.ForeColor = System.Drawing.Color.White;
-            this.computerColor3Button.Location = new System.Drawing.Point(273, 49);
+            this.computerColor3Button.Location = new System.Drawing.Point(273, 52);
             this.computerColor3Button.Name = "computerColor3Button";
-            this.computerColor3Button.Size = new System.Drawing.Size(43, 31);
+            this.computerColor3Button.Size = new System.Drawing.Size(43, 42);
             this.computerColor3Button.TabIndex = 10;
             this.computerColor3Button.UseVisualStyleBackColor = false;
             this.computerColor3Button.Click += new System.EventHandler(this.computerColorButton_Click);
@@ -402,9 +408,9 @@
             this.playerColor3Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playerColor3Button.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.playerColor3Button.ForeColor = System.Drawing.Color.White;
-            this.playerColor3Button.Location = new System.Drawing.Point(273, 12);
+            this.playerColor3Button.Location = new System.Drawing.Point(273, 6);
             this.playerColor3Button.Name = "playerColor3Button";
-            this.playerColor3Button.Size = new System.Drawing.Size(43, 31);
+            this.playerColor3Button.Size = new System.Drawing.Size(43, 40);
             this.playerColor3Button.TabIndex = 9;
             this.playerColor3Button.UseVisualStyleBackColor = false;
             this.playerColor3Button.Click += new System.EventHandler(this.playerColorButton_Click);
@@ -418,9 +424,9 @@
             this.computerColor2Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.computerColor2Button.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.computerColor2Button.ForeColor = System.Drawing.Color.White;
-            this.computerColor2Button.Location = new System.Drawing.Point(224, 49);
+            this.computerColor2Button.Location = new System.Drawing.Point(224, 52);
             this.computerColor2Button.Name = "computerColor2Button";
-            this.computerColor2Button.Size = new System.Drawing.Size(43, 31);
+            this.computerColor2Button.Size = new System.Drawing.Size(43, 42);
             this.computerColor2Button.TabIndex = 8;
             this.computerColor2Button.UseVisualStyleBackColor = false;
             this.computerColor2Button.Click += new System.EventHandler(this.computerColorButton_Click);
@@ -434,9 +440,9 @@
             this.playerColor2Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playerColor2Button.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.playerColor2Button.ForeColor = System.Drawing.Color.White;
-            this.playerColor2Button.Location = new System.Drawing.Point(224, 12);
+            this.playerColor2Button.Location = new System.Drawing.Point(224, 6);
             this.playerColor2Button.Name = "playerColor2Button";
-            this.playerColor2Button.Size = new System.Drawing.Size(43, 31);
+            this.playerColor2Button.Size = new System.Drawing.Size(43, 40);
             this.playerColor2Button.TabIndex = 7;
             this.playerColor2Button.UseVisualStyleBackColor = false;
             this.playerColor2Button.Click += new System.EventHandler(this.playerColorButton_Click);
@@ -450,9 +456,9 @@
             this.computerColor1Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.computerColor1Button.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.computerColor1Button.ForeColor = System.Drawing.Color.White;
-            this.computerColor1Button.Location = new System.Drawing.Point(175, 49);
+            this.computerColor1Button.Location = new System.Drawing.Point(175, 52);
             this.computerColor1Button.Name = "computerColor1Button";
-            this.computerColor1Button.Size = new System.Drawing.Size(43, 31);
+            this.computerColor1Button.Size = new System.Drawing.Size(43, 42);
             this.computerColor1Button.TabIndex = 6;
             this.computerColor1Button.UseVisualStyleBackColor = false;
             this.computerColor1Button.Click += new System.EventHandler(this.computerColorButton_Click);
@@ -466,9 +472,9 @@
             this.playerColor1Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playerColor1Button.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.playerColor1Button.ForeColor = System.Drawing.Color.White;
-            this.playerColor1Button.Location = new System.Drawing.Point(175, 12);
+            this.playerColor1Button.Location = new System.Drawing.Point(175, 6);
             this.playerColor1Button.Name = "playerColor1Button";
-            this.playerColor1Button.Size = new System.Drawing.Size(43, 31);
+            this.playerColor1Button.Size = new System.Drawing.Size(43, 40);
             this.playerColor1Button.TabIndex = 5;
             this.playerColor1Button.UseVisualStyleBackColor = false;
             this.playerColor1Button.Click += new System.EventHandler(this.playerColorButton_Click);
@@ -480,9 +486,9 @@
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.Font = new System.Drawing.Font("Caviar Dreams", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label6.ForeColor = System.Drawing.Color.DimGray;
-            this.label6.Location = new System.Drawing.Point(52, 46);
+            this.label6.Location = new System.Drawing.Point(52, 49);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(117, 37);
+            this.label6.Size = new System.Drawing.Size(117, 48);
             this.label6.TabIndex = 4;
             this.label6.Text = "komputer";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -494,12 +500,71 @@
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Font = new System.Drawing.Font("Caviar Dreams", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label5.ForeColor = System.Drawing.Color.DimGray;
-            this.label5.Location = new System.Drawing.Point(52, 9);
+            this.label5.Location = new System.Drawing.Point(52, 3);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(117, 37);
+            this.label5.Size = new System.Drawing.Size(117, 46);
             this.label5.TabIndex = 3;
             this.label5.Text = "gracz";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // levelPanel
+            // 
+            this.levelPanel.ColumnCount = 3;
+            this.levelPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.levelPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.levelPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.levelPanel.Controls.Add(this.hardLevelRadioButton, 0, 0);
+            this.levelPanel.Controls.Add(this.easyLevelRadioButton, 0, 0);
+            this.levelPanel.Controls.Add(this.label7, 0, 0);
+            this.levelPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.levelPanel.Location = new System.Drawing.Point(3, 334);
+            this.levelPanel.Name = "levelPanel";
+            this.levelPanel.RowCount = 1;
+            this.levelPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.levelPanel.Size = new System.Drawing.Size(494, 52);
+            this.levelPanel.TabIndex = 6;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.White;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label7.Font = new System.Drawing.Font("Caviar Dreams", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label7.ForeColor = System.Drawing.Color.DimGray;
+            this.label7.Location = new System.Drawing.Point(3, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(241, 52);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "poziom";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // easyLevelRadioButton
+            // 
+            this.easyLevelRadioButton.AutoSize = true;
+            this.easyLevelRadioButton.Checked = true;
+            this.easyLevelRadioButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.easyLevelRadioButton.Font = new System.Drawing.Font("Caviar Dreams", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.easyLevelRadioButton.ForeColor = System.Drawing.Color.DimGray;
+            this.easyLevelRadioButton.Location = new System.Drawing.Point(250, 3);
+            this.easyLevelRadioButton.Name = "easyLevelRadioButton";
+            this.easyLevelRadioButton.Size = new System.Drawing.Size(92, 46);
+            this.easyLevelRadioButton.TabIndex = 4;
+            this.easyLevelRadioButton.TabStop = true;
+            this.easyLevelRadioButton.Text = "łatwy";
+            this.easyLevelRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // hardLevelRadioButton
+            // 
+            this.hardLevelRadioButton.AutoSize = true;
+            this.hardLevelRadioButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hardLevelRadioButton.Font = new System.Drawing.Font("Caviar Dreams", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.hardLevelRadioButton.ForeColor = System.Drawing.Color.DimGray;
+            this.hardLevelRadioButton.Location = new System.Drawing.Point(348, 3);
+            this.hardLevelRadioButton.Name = "hardLevelRadioButton";
+            this.hardLevelRadioButton.Size = new System.Drawing.Size(143, 46);
+            this.hardLevelRadioButton.TabIndex = 5;
+            this.hardLevelRadioButton.Text = "trudny";
+            this.hardLevelRadioButton.UseVisualStyleBackColor = true;
             // 
             // NewGameSetupControl
             // 
@@ -508,7 +573,7 @@
             this.Controls.Add(this.mainPanel);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "NewGameSetupControl";
-            this.Size = new System.Drawing.Size(500, 400);
+            this.Size = new System.Drawing.Size(500, 450);
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
             this.defineKPanel.ResumeLayout(false);
@@ -521,6 +586,8 @@
             this.firstMovePanel.PerformLayout();
             this.chooseColorsPanel.ResumeLayout(false);
             this.chooseColorsPanel.PerformLayout();
+            this.levelPanel.ResumeLayout(false);
+            this.levelPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -553,5 +620,9 @@
         private System.Windows.Forms.Button computerColor2Button;
         private System.Windows.Forms.Button playerColor2Button;
         private System.Windows.Forms.Button computerColor1Button;
+        private System.Windows.Forms.TableLayoutPanel levelPanel;
+        private System.Windows.Forms.RadioButton hardLevelRadioButton;
+        private System.Windows.Forms.RadioButton easyLevelRadioButton;
+        private System.Windows.Forms.Label label7;
     }
 }
