@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Szemeredi
 {
@@ -15,13 +16,14 @@ namespace Szemeredi
         private Button firstNumber;
         private Button secondNumber;
         private int round;
+        private Button[] buttons;
 
         public GameControl()
         {
             InitializeComponent();
             firstNumber = null;
             secondNumber = null;
-            round = 1;
+            round = 0;
         }
 
         public void Reset(int n, int k, bool playerFirstMove, Color playerColor, Color computerColor, bool easyLevel)
@@ -40,9 +42,6 @@ namespace Szemeredi
             for (int i = 1; i <= n; i++)
                 GameState.Instance.availableNumbers.Add(i);
 
-            firstNumber = null;
-            secondNumber = null;
-
             playerLabel.BackColor = playerColor;
             playersNumbersLabel.BackColor = playerColor;
             computerLabel.BackColor = computerColor;
@@ -50,15 +49,12 @@ namespace Szemeredi
 
             KLabel.Text = "k: " + k;
             levelLabel.Text= easyLevel ? "łatwy" : "trudny";
-            firstNumberButton.Text = "?";
-            secondNumberButton.Text = "?";
 
             playersNumbersLabel.Text = "?";
             computersNumbersLabel.Text = "?";
-            roundLabel.Text = "runda: " + round.ToString();
+            round = 0;
 
-            updateActionLabel();
-
+            buttons = new Button[n];
             buttonsPanel.Controls.Clear();
             int dim = (int)Math.Ceiling(Math.Sqrt(Math.Ceiling((double)n / 2)));
             int over = (int)Math.Floor((double)((2 * dim * dim - n) / (2 * dim)));
@@ -69,12 +65,12 @@ namespace Szemeredi
 
             buttonsPanel.ColumnStyles.Clear();
             buttonsPanel.RowStyles.Clear();
-            int counter = 1;
+            
             for (int r = 0; r < columns; r++)
                 buttonsPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100 / columns));
             for (int c = 0; c < rows; c++)
                 buttonsPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100 / rows));
-
+            int counter = 1;
             for (int r = 0; r < rows; r++)
             {
                 for (int c = 0; c < columns; c++)
@@ -84,10 +80,14 @@ namespace Szemeredi
                         Button newButton = new Button { Text = counter.ToString(), Dock = DockStyle.Fill };
                         newButton.Click += new EventHandler(this.numberButton_Click);
                         buttonsPanel.Controls.Add(newButton, c, r);
+                        buttons[counter - 1] = newButton;
                         counter++;
                     }
                 }
             }
+            
+            nextRound();
+            updateAction();
         }
 
         private void numberButton_Click(object sender, EventArgs e)
@@ -118,7 +118,7 @@ namespace Szemeredi
                 else if (GameState.Instance.currentMove == GameState.Movement.ComputersChoice)
                     GameState.Instance.currentMove = GameState.Movement.PlayerColouring;
             }
-            updateActionLabel();
+            updateAction();
         }
 
         private void chooseNumberToColourButton_Click(object sender, EventArgs e)
@@ -176,9 +176,9 @@ namespace Szemeredi
             firstNumber.Enabled = false;
             secondNumber.Enabled = false;
             updateNumbersLabels();
-            //CheckWinner();
+            //Engine.CheckWinner();
             nextRound();
-            updateActionLabel();
+            updateAction();
         }
 
         private void nextRound()
@@ -189,10 +189,10 @@ namespace Szemeredi
             firstNumberButton.Text = "?";
             secondNumberButton.Text = "?";
             round++;
-            roundLabel.Text = "runda: " + round.ToString();
+            roundLabel.Text = "runda: " + round.ToString();         
         }
 
-        private void updateActionLabel()
+        private void updateAction()
         {
             switch (GameState.Instance.currentMove)
             {
@@ -209,6 +209,11 @@ namespace Szemeredi
                     actionLabel.Text = "ruch: komputer koloruje liczbę";
                     break;
             }
+
+            if (GameState.Instance.currentMove == GameState.Movement.ComputersChoice)
+                Computer.chooseNumbers(buttons);
+            if (GameState.Instance.currentMove == GameState.Movement.ComputerColouring)
+                Computer.colourNumber(firstNumberButton, secondNumberButton);
         }
 
         private void updateNumbersLabels()
