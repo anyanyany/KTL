@@ -103,13 +103,15 @@ namespace Szemeredi
                 firstNumber.BackColor = Color.DimGray;
                 firstNumberButton.Text = firstNumber.Text;
                 GameState.Instance.chosen[0] = int.Parse(firstNumber.Text);
+                GameState.Instance.availableNumbers.Remove(int.Parse(firstNumber.Text));
             }
             else if (secondNumber == null && chosenButton!=firstNumber)
             {
                 secondNumber = chosenButton;
                 secondNumber.BackColor = Color.DimGray;
                 secondNumberButton.Text = secondNumber.Text;
-                GameState.Instance.chosen[0] = int.Parse(secondNumber.Text);
+                GameState.Instance.chosen[1] = int.Parse(secondNumber.Text);
+                GameState.Instance.availableNumbers.Remove(int.Parse(secondNumber.Text));
             }
             if (firstNumber != null && secondNumber != null)
             {
@@ -170,13 +172,13 @@ namespace Szemeredi
                 GameState.Instance.player.Add(number2);
             }
 
-            GameState.Instance.availableNumbers.Remove(number1);
-            GameState.Instance.availableNumbers.Remove(number2);
-
             firstNumber.Enabled = false;
             secondNumber.Enabled = false;
             updateNumbersLabels();
-            //Engine.CheckWinner();
+            if(Engine.CheckWinner()!=Engine.Winner.None)
+            {
+                //TODO
+            }
             nextRound();
             updateAction();
         }
@@ -211,7 +213,7 @@ namespace Szemeredi
             }
 
             if (GameState.Instance.currentMove == GameState.Movement.ComputersChoice)
-                Computer.chooseNumbers(buttons);
+                Computer.chooseNumber(buttons);
             if (GameState.Instance.currentMove == GameState.Movement.ComputerColouring)
                 Computer.colourNumber(firstNumberButton, secondNumberButton);
         }

@@ -10,43 +10,35 @@ namespace Szemeredi
 {
     public static class Computer
     {
-        public static void chooseNumbers(Button[] buttons)
+        static int delay = 1500;
+
+        public async static void chooseNumber(Button[] buttons)
         {
-            /*
+            await Task.Delay(delay);
+            int number = -1;
             if (GameState.Instance.level == GameState.Level.Easy)
             {
-
+                number = Engine.ChooseNumberRandomly();
             }
             else if (GameState.Instance.level == GameState.Level.Hard)
             {
-
+                number = Engine.ChooseNumber();
             }
-            */
-
-            Thread.Sleep(1000);
-            Random r = new Random();
-            int number = GameState.Instance.availableNumbers.ElementAt(r.Next(0, GameState.Instance.availableNumbers.Count));
-            buttons[number - 1].PerformClick();
-            Thread.Sleep(1000);
-            number = GameState.Instance.availableNumbers.ElementAt(r.Next(0, GameState.Instance.availableNumbers.Count));
             buttons[number - 1].PerformClick();
         }
 
-        public static void colourNumber(Button first, Button second)
+        public async static void colourNumber(Button first, Button second)
         {
-            /*
+            await Task.Delay(delay);
+            int index = -1;
             if (GameState.Instance.level == GameState.Level.Easy)
             {
-
+                index = Engine.ColourNumberRandomly();
             }
             else if (GameState.Instance.level == GameState.Level.Hard)
             {
-
-            }
-            */
-            Thread.Sleep(1000);
-            Random r = new Random();
-            int index = r.Next(0, 2);
+                index = Engine.ColourNumber();
+            }            
             if (index == 0)
                 first.PerformClick();
             else
