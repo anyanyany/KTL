@@ -19,6 +19,9 @@ namespace Szemeredi
 
         public static Winner CheckWinner() //TODO
         {
+            if (GameState.Instance.player.Count < GameState.Instance.k)
+                return Winner.None;
+
             //GameState.Instance.player
             //GameState.Instance.computer
             //GameState.Instance.k

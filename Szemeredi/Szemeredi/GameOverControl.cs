@@ -35,6 +35,9 @@ namespace Szemeredi
                 case Engine.Winner.Tie:
                     winnerLabel.Text = "REMIS";
                     break;
+                case Engine.Winner.None:
+                    winnerLabel.Text = "IMPAS";
+                    break;
             }
         }
     }

@@ -194,7 +194,11 @@ namespace Szemeredi
             secondNumberButton = null;
             GameState.Instance.chosen = new int[2];
             round++;
-            roundLabel.Text = "runda: " + round.ToString();         
+            roundLabel.Text = "runda: " + round.ToString();    
+            if (GameState.Instance.availableNumbers.Count<2)
+            {
+                Form1.GameOver(Engine.Winner.None);
+            }     
         }
 
         private void updateAction()

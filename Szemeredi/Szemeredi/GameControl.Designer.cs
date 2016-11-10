@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.mainPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonsPanel = new System.Windows.Forms.TableLayoutPanel();
             this.bottomPanel = new System.Windows.Forms.TableLayoutPanel();
             this.levelLabel = new System.Windows.Forms.Label();
             this.KLabel = new System.Windows.Forms.Label();
@@ -40,13 +42,11 @@
             this.computerPanel = new System.Windows.Forms.TableLayoutPanel();
             this.computersNumbersLabel = new System.Windows.Forms.Label();
             this.computerLabel = new System.Windows.Forms.Label();
-            this.buttonsPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.mainPanel.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.bottomPanel.SuspendLayout();
             this.playerPanel.SuspendLayout();
             this.computerPanel.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -69,6 +69,35 @@
             this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.mainPanel.Size = new System.Drawing.Size(900, 600);
             this.mainPanel.TabIndex = 0;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.buttonsPanel, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 90);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(900, 360);
+            this.tableLayoutPanel1.TabIndex = 3;
+            // 
+            // buttonsPanel
+            // 
+            this.buttonsPanel.ColumnCount = 1;
+            this.buttonsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.buttonsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.buttonsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonsPanel.Location = new System.Drawing.Point(3, 3);
+            this.buttonsPanel.Name = "buttonsPanel";
+            this.buttonsPanel.RowCount = 1;
+            this.buttonsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.buttonsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.buttonsPanel.Size = new System.Drawing.Size(894, 354);
+            this.buttonsPanel.TabIndex = 0;
             // 
             // bottomPanel
             // 
@@ -168,7 +197,6 @@
             // 
             // playersNumbersLabel
             // 
-            this.playersNumbersLabel.AutoSize = true;
             this.playersNumbersLabel.BackColor = System.Drawing.Color.White;
             this.playersNumbersLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.playersNumbersLabel.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -216,7 +244,6 @@
             // 
             // computersNumbersLabel
             // 
-            this.computersNumbersLabel.AutoSize = true;
             this.computersNumbersLabel.BackColor = System.Drawing.Color.White;
             this.computersNumbersLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.computersNumbersLabel.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -244,35 +271,6 @@
             this.computerLabel.Text = "komputer";
             this.computerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // buttonsPanel
-            // 
-            this.buttonsPanel.ColumnCount = 1;
-            this.buttonsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.buttonsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.buttonsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonsPanel.Location = new System.Drawing.Point(3, 3);
-            this.buttonsPanel.Name = "buttonsPanel";
-            this.buttonsPanel.RowCount = 1;
-            this.buttonsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.buttonsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.buttonsPanel.Size = new System.Drawing.Size(894, 354);
-            this.buttonsPanel.TabIndex = 0;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.buttonsPanel, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 90);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(900, 360);
-            this.tableLayoutPanel1.TabIndex = 3;
-            // 
             // GameControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -281,13 +279,13 @@
             this.Name = "GameControl";
             this.Size = new System.Drawing.Size(900, 600);
             this.mainPanel.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.bottomPanel.ResumeLayout(false);
             this.bottomPanel.PerformLayout();
             this.playerPanel.ResumeLayout(false);
             this.playerPanel.PerformLayout();
             this.computerPanel.ResumeLayout(false);
             this.computerPanel.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
