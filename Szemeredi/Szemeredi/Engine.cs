@@ -13,10 +13,11 @@ namespace Szemeredi
         {
             Player,
             Computer,
+            Tie,
             None
         }
 
-        public static Winner CheckWinner()
+        public static Winner CheckWinner() //TODO
         {
             //GameState.Instance.player
             //GameState.Instance.computer
@@ -25,9 +26,8 @@ namespace Szemeredi
 
         }
 
-        public static bool CheckSzemeredisTheorem(int n, int k)
-        {
-            //TODO
+        public static bool CheckSzemeredisTheorem(int n, int k) //TODO
+        {    
             return true;
         }
 

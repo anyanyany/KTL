@@ -13,16 +13,16 @@ namespace Szemeredi
 {
     public partial class GameControl : UserControl
     {
-        private Button firstNumber;
-        private Button secondNumber;
+        private Button firstNumberButton;
+        private Button secondNumberButton;
         private int round;
         private Button[] buttons;
 
         public GameControl()
         {
             InitializeComponent();
-            firstNumber = null;
-            secondNumber = null;
+            firstNumberButton = null;
+            secondNumberButton = null;
             round = 0;
         }
 
@@ -92,43 +92,45 @@ namespace Szemeredi
 
         private void numberButton_Click(object sender, EventArgs e)
         {
-            if (GameState.Instance.currentMove != GameState.Movement.PlayersChoice && GameState.Instance.currentMove != GameState.Movement.ComputersChoice)
-                return;
-
             Button chosenButton = (Button)sender;
+            if (GameState.Instance.currentMove == GameState.Movement.PlayersChoice || GameState.Instance.currentMove == GameState.Movement.ComputersChoice)
+            {
+                chooseNumber(chosenButton);
+            }
+            else if(GameState.Instance.currentMove == GameState.Movement.PlayerColouring || GameState.Instance.currentMove == GameState.Movement.ComputerColouring)
+            {
+                colourNumber(chosenButton);
+            }
+            updateAction();
+        }
 
-            if (firstNumber == null)
+        private void chooseNumber(Button chosenButton)
+        {
+            if (firstNumberButton == null)
             {
-                firstNumber = chosenButton;
-                firstNumber.BackColor = Color.DimGray;
-                firstNumberButton.Text = firstNumber.Text;
-                GameState.Instance.chosen[0] = int.Parse(firstNumber.Text);
-                GameState.Instance.availableNumbers.Remove(int.Parse(firstNumber.Text));
+                firstNumberButton = chosenButton;
+                firstNumberButton.BackColor = Color.DimGray;
+                GameState.Instance.chosen[0] = int.Parse(firstNumberButton.Text);
+                GameState.Instance.availableNumbers.Remove(int.Parse(firstNumberButton.Text));
             }
-            else if (secondNumber == null && chosenButton!=firstNumber)
+            else if (secondNumberButton == null && chosenButton != firstNumberButton)
             {
-                secondNumber = chosenButton;
-                secondNumber.BackColor = Color.DimGray;
-                secondNumberButton.Text = secondNumber.Text;
-                GameState.Instance.chosen[1] = int.Parse(secondNumber.Text);
-                GameState.Instance.availableNumbers.Remove(int.Parse(secondNumber.Text));
+                secondNumberButton = chosenButton;
+                secondNumberButton.BackColor = Color.DimGray;
+                GameState.Instance.chosen[1] = int.Parse(secondNumberButton.Text);
+                GameState.Instance.availableNumbers.Remove(int.Parse(secondNumberButton.Text));
             }
-            if (firstNumber != null && secondNumber != null)
+            if (firstNumberButton != null && secondNumberButton != null)
             {
                 if (GameState.Instance.currentMove == GameState.Movement.PlayersChoice)
                     GameState.Instance.currentMove = GameState.Movement.ComputerColouring;
                 else if (GameState.Instance.currentMove == GameState.Movement.ComputersChoice)
                     GameState.Instance.currentMove = GameState.Movement.PlayerColouring;
-            }
-            updateAction();
+            }           
         }
 
-        private void chooseNumberToColourButton_Click(object sender, EventArgs e)
+        private void colourNumber(Button chosenButton)
         {
-            if (GameState.Instance.currentMove != GameState.Movement.PlayerColouring && GameState.Instance.currentMove != GameState.Movement.ComputerColouring)
-                return;
-
-            Button chosenButton = (Button)sender;
             Color firstColor = Color.Empty;
             Color secondColor = Color.Empty;
             int number1 = 0, number2 = 0;
@@ -146,17 +148,17 @@ namespace Szemeredi
 
             if (chosenButton == firstNumberButton)
             {
-                firstNumber.BackColor = firstColor;
-                secondNumber.BackColor = secondColor;
-                number1 = int.Parse(firstNumber.Text);
-                number2 = int.Parse(secondNumber.Text);
+                firstNumberButton.BackColor = firstColor;
+                secondNumberButton.BackColor = secondColor;
+                number1 = int.Parse(firstNumberButton.Text);
+                number2 = int.Parse(secondNumberButton.Text);
             }
             else if (chosenButton == secondNumberButton)
             {
-                secondNumber.BackColor = firstColor;
-                firstNumber.BackColor = secondColor;
-                number1 = int.Parse(secondNumber.Text);
-                number2 = int.Parse(firstNumber.Text);
+                secondNumberButton.BackColor = firstColor;
+                firstNumberButton.BackColor = secondColor;
+                number1 = int.Parse(secondNumberButton.Text);
+                number2 = int.Parse(firstNumberButton.Text);
             }
 
             if (GameState.Instance.currentMove == GameState.Movement.PlayerColouring)
@@ -172,24 +174,22 @@ namespace Szemeredi
                 GameState.Instance.player.Add(number2);
             }
 
-            firstNumber.Enabled = false;
-            secondNumber.Enabled = false;
+            firstNumberButton.Enabled = false;
+            secondNumberButton.Enabled = false;
             updateNumbersLabels();
-            if(Engine.CheckWinner()!=Engine.Winner.None)
+            Engine.Winner winner = Engine.CheckWinner();
+            if (winner != Engine.Winner.None) 
             {
-                //TODO
+                Form1.GameOver(winner);
             }
             nextRound();
-            updateAction();
         }
-
+        
         private void nextRound()
         {
-            firstNumber = null;
-            secondNumber = null;
+            firstNumberButton = null;
+            secondNumberButton = null;
             GameState.Instance.chosen = new int[2];
-            firstNumberButton.Text = "?";
-            secondNumberButton.Text = "?";
             round++;
             roundLabel.Text = "runda: " + round.ToString();         
         }

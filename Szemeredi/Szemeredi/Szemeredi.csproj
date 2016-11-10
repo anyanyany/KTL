@@ -60,6 +60,12 @@
     <Compile Include="GameControl.Designer.cs">
       <DependentUpon>GameControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameOverControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GameOverControl.Designer.cs">
+      <DependentUpon>GameOverControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="GameState.cs" />
     <Compile Include="NewGameSetupControl.cs">
       <SubType>UserControl</SubType>
@@ -74,6 +80,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GameControl.resx">
       <DependentUpon>GameControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameOverControl.resx">
+      <DependentUpon>GameOverControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewGameSetupControl.resx">
       <DependentUpon>NewGameSetupControl.cs</DependentUpon>
