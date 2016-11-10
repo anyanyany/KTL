@@ -131,6 +131,9 @@ namespace Szemeredi
 
         private void colourNumber(Button chosenButton)
         {
+            if (chosenButton != firstNumberButton && chosenButton != secondNumberButton)
+                return;
+
             Color firstColor = Color.Empty;
             Color secondColor = Color.Empty;
             int number1 = 0, number2 = 0;
