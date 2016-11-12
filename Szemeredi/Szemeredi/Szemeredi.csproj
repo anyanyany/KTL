@@ -95,6 +95,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -105,6 +106,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Resources\CaviarDreams.ttf" />
+    <EmbeddedResource Include="Resources\CaviarDreams_BoldItalic.ttf" />
+    <EmbeddedResource Include="Resources\CaviarDreams_Italic.ttf" />
+    <EmbeddedResource Include="Resources\Caviar_Dreams_Bold.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
