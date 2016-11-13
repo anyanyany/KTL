@@ -22,8 +22,10 @@ namespace Szemeredi
             if (GameState.Instance.player.Count < GameState.Instance.k)
                 return Winner.None;
 
-            int pLength = LengthOfSequence(GameState.Instance.player);
-            int cLength = LengthOfSequence(GameState.Instance.computer);
+            int difference;
+            List<int> sequence;
+            int pLength = LengthOfSequence(GameState.Instance.player, out difference, out sequence);
+            int cLength = LengthOfSequence(GameState.Instance.computer, out difference, out sequence);
 
             if (pLength < GameState.Instance.k && cLength < GameState.Instance.k)
                 return Winner.None;
@@ -63,7 +65,7 @@ namespace Szemeredi
             return r.Next(0, GameState.Instance.chosen.Length);
         }
 
-        public static int LengthOfSequence(List<int> numbers)
+        public static int LengthOfSequence(List<int> numbers, out int difference, out List<int> sequence)
         {
             Dictionary<int, List<Tuple<int, int>>> dictionary = new Dictionary<int, List<Tuple<int, int>>>();
             int n = numbers.Count;
@@ -79,7 +81,11 @@ namespace Szemeredi
                 }
             }
             int length = -1;
+            difference = -1;
+            sequence = new List<int>();
+
             List<int> keys = dictionary.Keys.ToList();
+            int last = -1;
             foreach (int k in keys)
             {
                 Dictionary<int, int> T = new Dictionary<int, int>();
@@ -90,8 +96,13 @@ namespace Szemeredi
                     T[pair.Item2] = T[pair.Item1] + 1;
                 }
                 if (T.Values.Max() > length)
+                {
                     length = T.Values.Max();
+                    difference = k;
+                    last = T.FirstOrDefault(x => x.Value == T.Values.Max()).Key;
+                }
             }
+
             return length;
         }
     }
