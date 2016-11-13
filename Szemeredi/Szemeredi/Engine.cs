@@ -103,6 +103,17 @@ namespace Szemeredi
                 }
             }
 
+            dictionary[difference].Reverse();
+            sequence.Add(last);
+            foreach (Tuple<int, int> pair in dictionary[difference])
+            {
+                if(pair.Item2==last)
+                {
+                    sequence.Add(pair.Item1);
+                    last = pair.Item1;
+                }
+            }
+            sequence.Reverse();
             return length;
         }
     }
