@@ -38,6 +38,7 @@ namespace Szemeredi
             GameState.Instance.chosen = new int[2];
             GameState.Instance.currentMove = playerFirstMove ? GameState.Movement.PlayersChoice : GameState.Movement.ComputersChoice;
             GameState.Instance.level = easyLevel ? GameState.Level.Easy : GameState.Level.Hard;
+            GameState.Instance.gameOver = false;
 
             for (int i = 1; i <= n; i++)
                 GameState.Instance.availableNumbers.Add(i);
@@ -137,6 +138,7 @@ namespace Szemeredi
             Color firstColor = Color.Empty;
             Color secondColor = Color.Empty;
             int number1 = 0, number2 = 0;
+            List<int> sequence = new List<int>();
 
             if (GameState.Instance.currentMove == GameState.Movement.PlayerColouring)
             {
@@ -180,10 +182,12 @@ namespace Szemeredi
             firstNumberButton.Enabled = false;
             secondNumberButton.Enabled = false;
             updateNumbersLabels();
-            Engine.Winner winner = Engine.CheckWinner();
+            Engine.Winner winner = Engine.CheckWinner(out sequence);
             if (winner != Engine.Winner.None) 
             {
-                Form1.GameOver(winner);
+                Form1.GameOver(winner, sequence);
+                GameState.Instance.gameOver = true;
+                return;
             }
             nextRound();
         }
@@ -203,6 +207,8 @@ namespace Szemeredi
 
         private void updateAction()
         {
+            if (GameState.Instance.gameOver)
+                return;
             switch (GameState.Instance.currentMove)
             {
                 case GameState.Movement.PlayersChoice:

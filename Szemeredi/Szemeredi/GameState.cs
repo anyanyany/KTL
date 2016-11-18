@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Szemeredi.Engine;
 
 namespace Szemeredi
 {
@@ -35,6 +36,7 @@ namespace Szemeredi
         public int[] chosen { get; set; }
         public Movement currentMove { get; set; }
         public Level level { get; set; }
+        public bool gameOver { get; set; }
 
         private GameState()
         {

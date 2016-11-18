@@ -32,6 +32,7 @@
             this.winnerLabel = new System.Windows.Forms.Label();
             this.startNewGameButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.sequenceLabel = new System.Windows.Forms.Label();
             this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,6 +42,7 @@
             this.mainPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.mainPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.mainPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.mainPanel.Controls.Add(this.sequenceLabel, 0, 3);
             this.mainPanel.Controls.Add(this.winnerLabel, 0, 2);
             this.mainPanel.Controls.Add(this.startNewGameButton, 1, 4);
             this.mainPanel.Controls.Add(this.label1, 0, 0);
@@ -106,6 +108,22 @@
             this.label1.Text = "K O N I E C   G R Y";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // sequenceLabel
+            // 
+            this.sequenceLabel.AutoSize = true;
+            this.sequenceLabel.BackColor = System.Drawing.Color.White;
+            this.mainPanel.SetColumnSpan(this.sequenceLabel, 3);
+            this.sequenceLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sequenceLabel.Font = new System.Drawing.Font("Caviar Dreams", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.sequenceLabel.ForeColor = System.Drawing.Color.DimGray;
+            this.sequenceLabel.Location = new System.Drawing.Point(0, 280);
+            this.sequenceLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.sequenceLabel.Name = "sequenceLabel";
+            this.sequenceLabel.Size = new System.Drawing.Size(500, 40);
+            this.sequenceLabel.TabIndex = 7;
+            this.sequenceLabel.Text = "WYGRAŁEŚ!";
+            this.sequenceLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // GameOverControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -126,5 +144,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button startNewGameButton;
         private System.Windows.Forms.Label winnerLabel;
+        private System.Windows.Forms.Label sequenceLabel;
     }
 }

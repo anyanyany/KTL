@@ -65,11 +65,11 @@ namespace Szemeredi
             gameOverControl.Visible = false;
         }
 
-        public static void GameOver(Engine.Winner winner)
+        public static void GameOver(Engine.Winner winner, List<int> sequence=null)
         {
             gameControl.Enabled = false;
             gameControl.Visible = false;
-            gameOverControl.setText(winner);
+            gameOverControl.setText(winner, sequence);
             gameOverControl.Enabled = true;
             gameOverControl.Visible = true;
         }

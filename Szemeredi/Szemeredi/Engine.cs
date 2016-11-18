@@ -17,27 +17,35 @@ namespace Szemeredi
             None
         }
 
-        public static Winner CheckWinner()
+        public static Winner CheckWinner(out List<int> winSequence)
         {
+            winSequence = new List<int>();
             if (GameState.Instance.player.Count < GameState.Instance.k)
                 return Winner.None;
 
             int difference;
-            List<int> sequence;
-            int pLength = LengthOfSequence(GameState.Instance.player, out difference, out sequence);
-            int cLength = LengthOfSequence(GameState.Instance.computer, out difference, out sequence);
+            List<int> pSequence;
+            List<int> cSequence;
+            int pLength = LengthOfSequence(GameState.Instance.player, out difference, out pSequence);
+            int cLength = LengthOfSequence(GameState.Instance.computer, out difference, out cSequence);
 
             if (pLength < GameState.Instance.k && cLength < GameState.Instance.k)
                 return Winner.None;
             if (pLength == cLength)
                 return Winner.Tie;
             if (pLength > cLength)
+            {
+                winSequence = pSequence;
                 return Winner.Player;
+            }
+            winSequence = cSequence;
             return Winner.Computer;
         }
 
         public static bool CheckSzemeredisTheorem(int n, int k) //TODO
         {
+            double d = 1 / 2 - 1 / n;
+            //double num = Math.Pow(2, Math.Pow(2, Math.Pow(d,Math.Pow(-2,Math.Pow(2, (k + 9))))));
             return true;
         }
 
@@ -49,8 +57,23 @@ namespace Szemeredi
 
         public static int ChooseNumber() //TODO
         {
-            Random r = new Random();
-            return GameState.Instance.availableNumbers.ElementAt(r.Next(0, GameState.Instance.availableNumbers.Count));
+            int maxLength = int.MinValue;
+            int difference;
+            List<int> sequence;
+            int chosen = -1;
+
+            foreach (int n in GameState.Instance.availableNumbers)
+            {
+                List<int> numbers = new List<int>(GameState.Instance.computer);
+                numbers.Add(n);
+                int length = LengthOfSequence(numbers, out difference, out sequence);
+                if(length>maxLength)
+                {
+                    maxLength = length;
+                    chosen = n;
+                }
+            }
+            return chosen;
         }
 
         public static int ColourNumberRandomly()
@@ -59,14 +82,36 @@ namespace Szemeredi
             return r.Next(0, GameState.Instance.chosen.Length);
         }
 
-        public static int ColourNumber() //TODO
+        public static int ColourNumber() //TODO: jeśli jest kilka ciągów o max długości -> random
         {
+            List<int> numbers = new List<int>(GameState.Instance.computer);
+            numbers.Add(GameState.Instance.chosen[0]);
+
+            int difference;
+            List<int> sequence;
+            int firstLength = LengthOfSequence(numbers, out difference, out sequence);
+
+            numbers = new List<int>(GameState.Instance.computer);
+            numbers.Add(GameState.Instance.chosen[1]);
+            int secondLength = LengthOfSequence(numbers, out difference, out sequence);
+
+            if (firstLength > secondLength)
+                return 0;
+            else if (firstLength < secondLength)
+                return 1;
+
             Random r = new Random();
             return r.Next(0, GameState.Instance.chosen.Length);
         }
 
         public static int LengthOfSequence(List<int> numbers, out int difference, out List<int> sequence)
         {
+            int length = -1;
+            difference = -1;
+            sequence = new List<int>();
+
+            if (numbers.Count < 2)
+                return length;
             Dictionary<int, List<Tuple<int, int>>> dictionary = new Dictionary<int, List<Tuple<int, int>>>();
             int n = numbers.Count;
 
@@ -80,9 +125,7 @@ namespace Szemeredi
                     dictionary[r].Add(new Tuple<int, int>(numbers.ElementAt(i), numbers.ElementAt(j)));
                 }
             }
-            int length = -1;
-            difference = -1;
-            sequence = new List<int>();
+            
 
             List<int> keys = dictionary.Keys.ToList();
             int last = -1;

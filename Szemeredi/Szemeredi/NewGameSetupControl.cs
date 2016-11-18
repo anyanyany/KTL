@@ -29,7 +29,12 @@ namespace Szemeredi
                 MessageBox.Show("Nie wybrano kolorów graczy!", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if(!Engine.CheckSzemeredisTheorem((int)NNumericUpDown.Value, (int)KNumericUpDown.Value))
+            if ((int)KNumericUpDown.Value > (int)NNumericUpDown.Value/2)
+            {
+                MessageBox.Show("Złe parametry n i k!", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!Engine.CheckSzemeredisTheorem((int)NNumericUpDown.Value, (int)KNumericUpDown.Value))
                 MessageBox.Show("Dla podanych parametrów gra może się nie zakończyć!", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             Form1.showGameWindow((int)NNumericUpDown.Value, (int)KNumericUpDown.Value, playerRadioButton.Checked,playerColorButton.BackColor, computerColorButton.BackColor, easyLevelRadioButton.Checked);
         }

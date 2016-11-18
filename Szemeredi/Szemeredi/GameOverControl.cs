@@ -22,11 +22,12 @@ namespace Szemeredi
             Form1.NewGame();
         }
 
-        public void setText(Engine.Winner winner)
+        public void setText(Engine.Winner winner, List<int> sequence)
         {
+            string seq = "wygrany ciąg: ";
             switch (winner)
             {
-                case Engine.Winner.Player:
+                case Engine.Winner.Player:       
                     winnerLabel.Text = "WYGRANA!";
                     break;
                 case Engine.Winner.Computer:
@@ -39,6 +40,14 @@ namespace Szemeredi
                     winnerLabel.Text = "IMPAS";
                     break;
             }
+            if (sequence!=null && sequence.Count>0)
+            {
+                foreach (int i in sequence)
+                    seq = seq + " " + i.ToString();
+                sequenceLabel.Text = seq;
+            }
+            else
+                sequenceLabel.Text = String.Empty;
         }
     }
 }
