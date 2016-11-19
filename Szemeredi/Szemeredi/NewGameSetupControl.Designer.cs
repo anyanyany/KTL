@@ -55,9 +55,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.levelPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.easyLevelRadioButton = new System.Windows.Forms.RadioButton();
             this.hardLevelRadioButton = new System.Windows.Forms.RadioButton();
+            this.easyLevelRadioButton = new System.Windows.Forms.RadioButton();
+            this.label7 = new System.Windows.Forms.Label();
             this.mainPanel.SuspendLayout();
             this.defineKPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.KNumericUpDown)).BeginInit();
@@ -128,8 +128,13 @@
             this.KNumericUpDown.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.KNumericUpDown.Font = new System.Drawing.Font("Caviar Dreams", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.KNumericUpDown.Location = new System.Drawing.Point(250, 10);
+            this.KNumericUpDown.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
             this.KNumericUpDown.Minimum = new decimal(new int[] {
-            1,
+            2,
             0,
             0,
             0});
@@ -197,7 +202,7 @@
             0,
             0});
             this.NNumericUpDown.Minimum = new decimal(new int[] {
-            1,
+            4,
             0,
             0,
             0});
@@ -524,19 +529,18 @@
             this.levelPanel.Size = new System.Drawing.Size(494, 52);
             this.levelPanel.TabIndex = 6;
             // 
-            // label7
+            // hardLevelRadioButton
             // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.White;
-            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Font = new System.Drawing.Font("Caviar Dreams", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label7.ForeColor = System.Drawing.Color.DimGray;
-            this.label7.Location = new System.Drawing.Point(3, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(241, 52);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "poziom";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.hardLevelRadioButton.AutoSize = true;
+            this.hardLevelRadioButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hardLevelRadioButton.Font = new System.Drawing.Font("Caviar Dreams", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.hardLevelRadioButton.ForeColor = System.Drawing.Color.DimGray;
+            this.hardLevelRadioButton.Location = new System.Drawing.Point(348, 3);
+            this.hardLevelRadioButton.Name = "hardLevelRadioButton";
+            this.hardLevelRadioButton.Size = new System.Drawing.Size(143, 46);
+            this.hardLevelRadioButton.TabIndex = 5;
+            this.hardLevelRadioButton.Text = "trudny";
+            this.hardLevelRadioButton.UseVisualStyleBackColor = true;
             // 
             // easyLevelRadioButton
             // 
@@ -553,18 +557,19 @@
             this.easyLevelRadioButton.Text = "łatwy";
             this.easyLevelRadioButton.UseVisualStyleBackColor = true;
             // 
-            // hardLevelRadioButton
+            // label7
             // 
-            this.hardLevelRadioButton.AutoSize = true;
-            this.hardLevelRadioButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hardLevelRadioButton.Font = new System.Drawing.Font("Caviar Dreams", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.hardLevelRadioButton.ForeColor = System.Drawing.Color.DimGray;
-            this.hardLevelRadioButton.Location = new System.Drawing.Point(348, 3);
-            this.hardLevelRadioButton.Name = "hardLevelRadioButton";
-            this.hardLevelRadioButton.Size = new System.Drawing.Size(143, 46);
-            this.hardLevelRadioButton.TabIndex = 5;
-            this.hardLevelRadioButton.Text = "trudny";
-            this.hardLevelRadioButton.UseVisualStyleBackColor = true;
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.White;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label7.Font = new System.Drawing.Font("Caviar Dreams", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label7.ForeColor = System.Drawing.Color.DimGray;
+            this.label7.Location = new System.Drawing.Point(3, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(241, 52);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "poziom";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // NewGameSetupControl
             // 
