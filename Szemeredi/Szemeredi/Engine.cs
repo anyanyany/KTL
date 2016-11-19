@@ -55,23 +55,39 @@ namespace Szemeredi
             return GameState.Instance.availableNumbers.ElementAt(r.Next(0, GameState.Instance.availableNumbers.Count));
         }
 
-        public static int ChooseNumber() //TODO
+        public static int ChooseNumber() 
         {
+            int[] lengths = new int[GameState.Instance.availableNumbers.Count];
             int maxLength = int.MinValue;
             int difference;
             List<int> sequence;
             int chosen = -1;
 
-            foreach (int n in GameState.Instance.availableNumbers)
+            for (int i = 0; i < GameState.Instance.availableNumbers.Count; i++)
             {
+                int n = GameState.Instance.availableNumbers[i];
                 List<int> numbers = new List<int>(GameState.Instance.computer);
                 numbers.Add(n);
                 int length = LengthOfSequence(numbers, out difference, out sequence);
-                if(length>maxLength)
+                lengths[i] = length;
+                if (length > maxLength)
                 {
                     maxLength = length;
                     chosen = n;
                 }
+            }
+
+            List<int> maxLengthNumbers = new List<int>();
+            for (int i = 0; i < GameState.Instance.availableNumbers.Count; i++)
+            {
+                if(lengths[i]==maxLength)
+                    maxLengthNumbers.Add(GameState.Instance.availableNumbers[i]);
+
+            }
+            if(maxLengthNumbers.Count>1)
+            {
+                Random r = new Random();
+                chosen = maxLengthNumbers.ElementAt(r.Next(0, maxLengthNumbers.Count));
             }
             return chosen;
         }
@@ -82,7 +98,7 @@ namespace Szemeredi
             return r.Next(0, GameState.Instance.chosen.Length);
         }
 
-        public static int ColourNumber() //TODO: jeśli jest kilka ciągów o max długości -> random
+        public static int ColourNumber()
         {
             List<int> numbers = new List<int>(GameState.Instance.computer);
             numbers.Add(GameState.Instance.chosen[0]);
@@ -100,8 +116,7 @@ namespace Szemeredi
             else if (firstLength < secondLength)
                 return 1;
 
-            Random r = new Random();
-            return r.Next(0, GameState.Instance.chosen.Length);
+            return ColourNumberRandomly();
         }
 
         public static int LengthOfSequence(List<int> numbers, out int difference, out List<int> sequence)
@@ -125,7 +140,7 @@ namespace Szemeredi
                     dictionary[r].Add(new Tuple<int, int>(numbers.ElementAt(i), numbers.ElementAt(j)));
                 }
             }
-            
+
 
             List<int> keys = dictionary.Keys.ToList();
             int last = -1;
@@ -150,7 +165,7 @@ namespace Szemeredi
             sequence.Add(last);
             foreach (Tuple<int, int> pair in dictionary[difference])
             {
-                if(pair.Item2==last)
+                if (pair.Item2 == last)
                 {
                     sequence.Add(pair.Item1);
                     last = pair.Item1;
