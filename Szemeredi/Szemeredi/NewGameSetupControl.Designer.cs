@@ -55,9 +55,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.levelPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.hardLevelRadioButton = new System.Windows.Forms.RadioButton();
+            this.mediumLevelRadioButton = new System.Windows.Forms.RadioButton();
             this.easyLevelRadioButton = new System.Windows.Forms.RadioButton();
             this.label7 = new System.Windows.Forms.Label();
+            this.hardLevelRadioButton = new System.Windows.Forms.RadioButton();
             this.mainPanel.SuspendLayout();
             this.defineKPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.KNumericUpDown)).BeginInit();
@@ -514,12 +515,14 @@
             // 
             // levelPanel
             // 
-            this.levelPanel.ColumnCount = 3;
-            this.levelPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.levelPanel.ColumnCount = 4;
+            this.levelPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.levelPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.levelPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.levelPanel.Controls.Add(this.hardLevelRadioButton, 0, 0);
-            this.levelPanel.Controls.Add(this.easyLevelRadioButton, 0, 0);
+            this.levelPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.levelPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.levelPanel.Controls.Add(this.hardLevelRadioButton, 3, 0);
+            this.levelPanel.Controls.Add(this.mediumLevelRadioButton, 2, 0);
+            this.levelPanel.Controls.Add(this.easyLevelRadioButton, 1, 0);
             this.levelPanel.Controls.Add(this.label7, 0, 0);
             this.levelPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.levelPanel.Location = new System.Drawing.Point(3, 334);
@@ -529,18 +532,18 @@
             this.levelPanel.Size = new System.Drawing.Size(494, 52);
             this.levelPanel.TabIndex = 6;
             // 
-            // hardLevelRadioButton
+            // mediumLevelRadioButton
             // 
-            this.hardLevelRadioButton.AutoSize = true;
-            this.hardLevelRadioButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hardLevelRadioButton.Font = new System.Drawing.Font("Caviar Dreams", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.hardLevelRadioButton.ForeColor = System.Drawing.Color.DimGray;
-            this.hardLevelRadioButton.Location = new System.Drawing.Point(348, 3);
-            this.hardLevelRadioButton.Name = "hardLevelRadioButton";
-            this.hardLevelRadioButton.Size = new System.Drawing.Size(143, 46);
-            this.hardLevelRadioButton.TabIndex = 5;
-            this.hardLevelRadioButton.Text = "trudny";
-            this.hardLevelRadioButton.UseVisualStyleBackColor = true;
+            this.mediumLevelRadioButton.AutoSize = true;
+            this.mediumLevelRadioButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mediumLevelRadioButton.Font = new System.Drawing.Font("Caviar Dreams", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.mediumLevelRadioButton.ForeColor = System.Drawing.Color.DimGray;
+            this.mediumLevelRadioButton.Location = new System.Drawing.Point(298, 3);
+            this.mediumLevelRadioButton.Name = "mediumLevelRadioButton";
+            this.mediumLevelRadioButton.Size = new System.Drawing.Size(92, 46);
+            this.mediumLevelRadioButton.TabIndex = 5;
+            this.mediumLevelRadioButton.Text = "średni";
+            this.mediumLevelRadioButton.UseVisualStyleBackColor = true;
             // 
             // easyLevelRadioButton
             // 
@@ -549,7 +552,7 @@
             this.easyLevelRadioButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.easyLevelRadioButton.Font = new System.Drawing.Font("Caviar Dreams", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.easyLevelRadioButton.ForeColor = System.Drawing.Color.DimGray;
-            this.easyLevelRadioButton.Location = new System.Drawing.Point(250, 3);
+            this.easyLevelRadioButton.Location = new System.Drawing.Point(200, 3);
             this.easyLevelRadioButton.Name = "easyLevelRadioButton";
             this.easyLevelRadioButton.Size = new System.Drawing.Size(92, 46);
             this.easyLevelRadioButton.TabIndex = 4;
@@ -566,10 +569,23 @@
             this.label7.ForeColor = System.Drawing.Color.DimGray;
             this.label7.Location = new System.Drawing.Point(3, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(241, 52);
+            this.label7.Size = new System.Drawing.Size(191, 52);
             this.label7.TabIndex = 3;
             this.label7.Text = "poziom";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // hardLevelRadioButton
+            // 
+            this.hardLevelRadioButton.AutoSize = true;
+            this.hardLevelRadioButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hardLevelRadioButton.Font = new System.Drawing.Font("Caviar Dreams", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.hardLevelRadioButton.ForeColor = System.Drawing.Color.DimGray;
+            this.hardLevelRadioButton.Location = new System.Drawing.Point(396, 3);
+            this.hardLevelRadioButton.Name = "hardLevelRadioButton";
+            this.hardLevelRadioButton.Size = new System.Drawing.Size(95, 46);
+            this.hardLevelRadioButton.TabIndex = 6;
+            this.hardLevelRadioButton.Text = "trudny";
+            this.hardLevelRadioButton.UseVisualStyleBackColor = true;
             // 
             // NewGameSetupControl
             // 
@@ -626,8 +642,9 @@
         private System.Windows.Forms.Button playerColor2Button;
         private System.Windows.Forms.Button computerColor1Button;
         private System.Windows.Forms.TableLayoutPanel levelPanel;
-        private System.Windows.Forms.RadioButton hardLevelRadioButton;
+        private System.Windows.Forms.RadioButton mediumLevelRadioButton;
         private System.Windows.Forms.RadioButton easyLevelRadioButton;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.RadioButton hardLevelRadioButton;
     }
 }

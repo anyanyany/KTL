@@ -39,7 +39,7 @@ namespace Szemeredi
             gameOverControl.Visible = false;
         }
 
-        public static void showGameWindow(int n, int k, bool playerFirstMove, Color playerColor, Color computerColor, bool easyLevel)
+        public static void showGameWindow(int n, int k, bool playerFirstMove, Color playerColor, Color computerColor, GameState.Level level)
         {
             newGameControl.Enabled = false;
             newGameControl.Visible = false;
@@ -47,7 +47,7 @@ namespace Szemeredi
             gameOverControl.Visible = false;
             gameControl.Enabled = true;
             gameControl.Visible = true;
-            gameControl.Reset(n, k, playerFirstMove, playerColor, computerColor, easyLevel);
+            gameControl.Reset(n, k, playerFirstMove, playerColor, computerColor, level);
         }
 
         private void nowaGraToolStripMenuItem_Click(object sender, EventArgs e)

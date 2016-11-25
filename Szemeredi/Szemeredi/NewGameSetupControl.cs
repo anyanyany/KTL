@@ -24,6 +24,7 @@ namespace Szemeredi
 
         private void startGameButton_Click(object sender, EventArgs e)
         {
+            GameState.Level level;
             if (playerColorButton == null || computerColorButton == null)
             {
                 MessageBox.Show("Nie wybrano kolorów graczy!", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -36,7 +37,14 @@ namespace Szemeredi
             }
             if (!Engine.CheckSzemeredisTheorem((int)NNumericUpDown.Value, (int)KNumericUpDown.Value))
                 MessageBox.Show("Dla podanych parametrów gra może się nie zakończyć!", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            Form1.showGameWindow((int)NNumericUpDown.Value, (int)KNumericUpDown.Value, playerRadioButton.Checked,playerColorButton.BackColor, computerColorButton.BackColor, easyLevelRadioButton.Checked);
+            
+            if (easyLevelRadioButton.Checked)
+                level = GameState.Level.Easy;
+            else if (mediumLevelRadioButton.Checked)
+                level = GameState.Level.Medium;
+            else
+                level = GameState.Level.Hard;
+            Form1.showGameWindow((int)NNumericUpDown.Value, (int)KNumericUpDown.Value, playerRadioButton.Checked,playerColorButton.BackColor, computerColorButton.BackColor, level);
         }
 
         private void playerColorButton_Click(object sender, EventArgs e)

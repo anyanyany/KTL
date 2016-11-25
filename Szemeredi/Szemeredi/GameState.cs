@@ -8,7 +8,7 @@ using static Szemeredi.Engine;
 
 namespace Szemeredi
 {
-    class GameState
+    public class GameState
     {
         public enum Movement
         {
@@ -21,6 +21,7 @@ namespace Szemeredi
         public enum Level
         {
             Easy,
+            Medium,
             Hard
         }
 

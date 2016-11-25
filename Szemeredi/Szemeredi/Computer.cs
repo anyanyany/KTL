@@ -20,6 +20,10 @@ namespace Szemeredi
             {
                 number = Engine.ChooseNumberRandomly();
             }
+            else if (GameState.Instance.level == GameState.Level.Medium)
+            {
+                number = Engine.ChooseNumberNormally();
+            }
             else if (GameState.Instance.level == GameState.Level.Hard)
             {
                 number = Engine.ChooseNumber();
@@ -35,10 +39,14 @@ namespace Szemeredi
             {
                 index = Engine.ColourNumberRandomly();
             }
+            else if (GameState.Instance.level == GameState.Level.Medium)
+            {
+                index = Engine.ColourNumberNormally();
+            }
             else if (GameState.Instance.level == GameState.Level.Hard)
             {
                 index = Engine.ColourNumber();
-            }            
+            }
             if (index == 0)
                 first.PerformClick();
             else

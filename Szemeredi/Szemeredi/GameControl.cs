@@ -26,7 +26,7 @@ namespace Szemeredi
             round = 0;
         }
 
-        public void Reset(int n, int k, bool playerFirstMove, Color playerColor, Color computerColor, bool easyLevel)
+        public void Reset(int n, int k, bool playerFirstMove, Color playerColor, Color computerColor, GameState.Level level)
         {
             GameState.Instance.k = k;
             GameState.Instance.n = n;
@@ -37,7 +37,8 @@ namespace Szemeredi
             GameState.Instance.computer.Clear();
             GameState.Instance.chosen = new int[2];
             GameState.Instance.currentMove = playerFirstMove ? GameState.Movement.PlayersChoice : GameState.Movement.ComputersChoice;
-            GameState.Instance.level = easyLevel ? GameState.Level.Easy : GameState.Level.Hard;
+
+            GameState.Instance.level = level;
             GameState.Instance.gameOver = false;
 
             for (int i = 1; i <= n; i++)
@@ -49,8 +50,13 @@ namespace Szemeredi
             computersNumbersLabel.BackColor = computerColor;
 
             KLabel.Text = "k: " + k;
-            levelLabel.Text= easyLevel ? "łatwy" : "trudny";
-
+            if (level == GameState.Level.Easy)
+                levelLabel.Text = "łatwy";
+            else if (level == GameState.Level.Medium)
+                levelLabel.Text = "średni";
+            else
+                levelLabel.Text = "trudny";
+           
             playersNumbersLabel.Text = "?";
             computersNumbersLabel.Text = "?";
             round = 0;

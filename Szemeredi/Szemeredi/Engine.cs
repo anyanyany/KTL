@@ -44,8 +44,6 @@ namespace Szemeredi
 
         public static bool CheckSzemeredisTheorem(int n, int k) //TODO
         {
-            double d = 1 / 2 - 1 / n;
-            //double num = Math.Pow(2, Math.Pow(2, Math.Pow(d,Math.Pow(-2,Math.Pow(2, (k + 9))))));
             return true;
         }
 
@@ -55,7 +53,7 @@ namespace Szemeredi
             return GameState.Instance.availableNumbers.ElementAt(r.Next(0, GameState.Instance.availableNumbers.Count));
         }
 
-        public static int ChooseNumber() 
+        public static int ChooseNumberNormally() 
         {
             int[] lengths = new int[GameState.Instance.availableNumbers.Count];
             int maxLength = int.MinValue;
@@ -92,13 +90,18 @@ namespace Szemeredi
             return chosen;
         }
 
+        public static int ChooseNumber()
+        {
+            return ChooseNumberNormally();
+        }
+
         public static int ColourNumberRandomly()
         {
             Random r = new Random();
             return r.Next(0, GameState.Instance.chosen.Length);
         }
 
-        public static int ColourNumber()
+        public static int ColourNumberNormally()
         {
             List<int> numbers = new List<int>(GameState.Instance.computer);
             numbers.Add(GameState.Instance.chosen[0]);
@@ -114,6 +117,40 @@ namespace Szemeredi
             if (firstLength > secondLength)
                 return 0;
             else if (firstLength < secondLength)
+                return 1;
+
+            return ColourNumberRandomly();
+        }
+
+        public static int ColourNumber()
+        {
+            int difference;
+            List<int> sequence;
+
+            List<int> computerNumbers = new List<int>(GameState.Instance.computer);
+            List<int> playerNumbers = new List<int>(GameState.Instance.player);
+
+            computerNumbers.Add(GameState.Instance.chosen[0]);          
+            playerNumbers.Add(GameState.Instance.chosen[1]);
+
+            int computerFirstLength = LengthOfSequence(computerNumbers, out difference, out sequence);
+            int playerFirstLength = LengthOfSequence(playerNumbers, out difference, out sequence);
+
+            computerNumbers = new List<int>(GameState.Instance.computer);
+            playerNumbers = new List<int>(GameState.Instance.player);
+
+            computerNumbers.Add(GameState.Instance.chosen[1]);
+            playerNumbers.Add(GameState.Instance.chosen[0]);
+
+            int computerSecondLength = LengthOfSequence(computerNumbers, out difference, out sequence);
+            int playerSecondLength = LengthOfSequence(playerNumbers, out difference, out sequence);
+
+            if (computerFirstLength > computerSecondLength)
+            {
+                //if(computerFirstLength>playerFirstLength && computerFirstLength>playerSecondLength)
+                    return 0;
+            }                
+            else if (computerFirstLength < computerSecondLength)
                 return 1;
 
             return ColourNumberRandomly();
