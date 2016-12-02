@@ -92,7 +92,37 @@ namespace Szemeredi
 
         public static int ChooseNumber()
         {
-            return ChooseNumberNormally();
+            int[] lengths = new int[GameState.Instance.availableNumbers.Count];
+            int maxLength = int.MinValue;
+            int difference;
+            List<int> sequence;
+            int chosen = -1;
+
+            var choicesList = new List<Tuple<int, int, int>>(); // <potencjalnie wybierana liczba, liczba p, liczba q
+            for (int i = 0; i < GameState.Instance.availableNumbers.Count; i++)
+            {
+                int n = GameState.Instance.availableNumbers[i];
+                List<int> numbers = new List<int>(GameState.Instance.computer);
+                numbers.Add(n);
+                int p = LengthOfSequence(numbers, out difference, out sequence);
+
+                numbers = new List<int>(GameState.Instance.player);
+                numbers.Add(n);
+                int q = LengthOfSequence(numbers, out difference, out sequence);
+
+                choicesList.Add(Tuple.Create(n, p, q));
+            }
+
+            var choice = choicesList.Where(t => t.Item2 > t.Item3).OrderByDescending(t => t.Item2).FirstOrDefault();
+            if (choice == null)
+            {
+                choice = choicesList.Where(t => t.Item2 >= t.Item3).OrderByDescending(t => t.Item2).FirstOrDefault();
+            }
+            if (choice == null)
+            {
+                choice = choicesList.OrderByDescending(t => t.Item3).Last();
+            }
+            return choice.Item1;
         }
 
         public static int ColourNumberRandomly()
@@ -145,15 +175,20 @@ namespace Szemeredi
             int computerSecondLength = LengthOfSequence(computerNumbers, out difference, out sequence);
             int playerSecondLength = LengthOfSequence(playerNumbers, out difference, out sequence);
 
-            if (computerFirstLength > computerSecondLength)
-            {
-                //if(computerFirstLength>playerFirstLength && computerFirstLength>playerSecondLength)
-                    return 0;
-            }                
-            else if (computerFirstLength < computerSecondLength)
-                return 1;
+            var choicesList = new List<Tuple<int, int, int>>(); // <potencjalnie wybierana liczba, liczba p, liczba q
+            choicesList.Add(Tuple.Create(0, computerFirstLength, playerFirstLength));
+            choicesList.Add(Tuple.Create(1, computerSecondLength, playerSecondLength));
 
-            return ColourNumberRandomly();
+            var choice = choicesList.Where(t => t.Item2 > t.Item3).OrderByDescending(t => t.Item2).FirstOrDefault();
+            if (choice == null)
+            {
+                choice = choicesList.Where(t => t.Item2 >= t.Item3).OrderByDescending(t => t.Item2).FirstOrDefault();
+            }
+            if (choice == null)
+            {
+                choice = choicesList.OrderByDescending(t => t.Item3).Last();
+            }
+            return choice.Item1;
         }
 
         public static int LengthOfSequence(List<int> numbers, out int difference, out List<int> sequence)
