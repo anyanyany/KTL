@@ -113,6 +113,11 @@ namespace Szemeredi
                 choicesList.Add(Tuple.Create(n, p, q));
             }
 
+            if (choicesList.Select(t => t.Item2).Max() <= 2)
+            {
+                return ChooseNumberRandomly();
+            }
+
             var choice = choicesList.Where(t => t.Item2 > t.Item3).OrderByDescending(t => t.Item2).FirstOrDefault();
             if (choice == null)
             {
@@ -175,20 +180,10 @@ namespace Szemeredi
             int computerSecondLength = LengthOfSequence(computerNumbers, out difference, out sequence);
             int playerSecondLength = LengthOfSequence(playerNumbers, out difference, out sequence);
 
-            var choicesList = new List<Tuple<int, int, int>>(); // <potencjalnie wybierana liczba, liczba p, liczba q
-            choicesList.Add(Tuple.Create(0, computerFirstLength, playerFirstLength));
-            choicesList.Add(Tuple.Create(1, computerSecondLength, playerSecondLength));
-
-            var choice = choicesList.Where(t => t.Item2 > t.Item3).OrderByDescending(t => t.Item2).FirstOrDefault();
-            if (choice == null)
-            {
-                choice = choicesList.Where(t => t.Item2 >= t.Item3).OrderByDescending(t => t.Item2).FirstOrDefault();
-            }
-            if (choice == null)
-            {
-                choice = choicesList.OrderByDescending(t => t.Item3).Last();
-            }
-            return choice.Item1;
+            int max = (new List<int>() { playerFirstLength, computerFirstLength, playerSecondLength, computerSecondLength }).Max();
+            if (playerFirstLength == max || computerFirstLength == max) return 0;
+            return 1;
+            
         }
 
         public static int LengthOfSequence(List<int> numbers, out int difference, out List<int> sequence)
