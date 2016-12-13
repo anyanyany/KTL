@@ -34,6 +34,8 @@ namespace Szemeredi
         public List<int> availableNumbers { get; set; }
         public List<int> player { get; set; }
         public List<int> computer { get; set; }
+        public Dictionary<int, List<Tuple<int, int>>> computerDifferences;
+        public Dictionary<int, List<Tuple<int, int>>> playerDifferences;
         public int[] chosen { get; set; }
         public Movement currentMove { get; set; }
         public Level level { get; set; }
@@ -45,6 +47,8 @@ namespace Szemeredi
             player = new List<int>();
             computer = new List<int>();
             chosen = new int[2];
+            computerDifferences = new Dictionary<int, List<Tuple<int, int>>>();
+            playerDifferences = new Dictionary<int, List<Tuple<int, int>>>();
         }
 
         public static GameState Instance

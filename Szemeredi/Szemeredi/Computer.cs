@@ -26,7 +26,7 @@ namespace Szemeredi
             }
             else if (GameState.Instance.level == GameState.Level.Hard)
             {
-                number = Engine.ChooseNumber();
+                number = Engine.ChooseNumberDifficult();
             }
             buttons[number - 1].PerformClick();
         }
@@ -45,7 +45,7 @@ namespace Szemeredi
             }
             else if (GameState.Instance.level == GameState.Level.Hard)
             {
-                index = Engine.ColourNumber();
+                index = Engine.ColourNumberDifficult();
             }
             if (index == 0)
                 first.PerformClick();

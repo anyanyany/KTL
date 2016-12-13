@@ -56,7 +56,7 @@ namespace Szemeredi
                 levelLabel.Text = "średni";
             else
                 levelLabel.Text = "trudny";
-           
+
             playersNumbersLabel.Text = "?";
             computersNumbersLabel.Text = "?";
             round = 0;
@@ -72,7 +72,7 @@ namespace Szemeredi
 
             buttonsPanel.ColumnStyles.Clear();
             buttonsPanel.RowStyles.Clear();
-            
+
             for (int r = 0; r < columns; r++)
                 buttonsPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100 / columns));
             for (int c = 0; c < rows; c++)
@@ -92,7 +92,7 @@ namespace Szemeredi
                     }
                 }
             }
-            
+
             nextRound();
             updateAction();
         }
@@ -104,7 +104,7 @@ namespace Szemeredi
             {
                 chooseNumber(chosenButton);
             }
-            else if(GameState.Instance.currentMove == GameState.Movement.PlayerColouring || GameState.Instance.currentMove == GameState.Movement.ComputerColouring)
+            else if (GameState.Instance.currentMove == GameState.Movement.PlayerColouring || GameState.Instance.currentMove == GameState.Movement.ComputerColouring)
             {
                 colourNumber(chosenButton);
             }
@@ -133,7 +133,7 @@ namespace Szemeredi
                     GameState.Instance.currentMove = GameState.Movement.ComputerColouring;
                 else if (GameState.Instance.currentMove == GameState.Movement.ComputersChoice)
                     GameState.Instance.currentMove = GameState.Movement.PlayerColouring;
-            }           
+            }
         }
 
         private void colourNumber(Button chosenButton)
@@ -175,21 +175,19 @@ namespace Szemeredi
             if (GameState.Instance.currentMove == GameState.Movement.PlayerColouring)
             {
                 GameState.Instance.currentMove = GameState.Movement.PlayersChoice;
-                GameState.Instance.player.Add(number1);
-                GameState.Instance.computer.Add(number2);
+                AddNumbers(number1, number2);
             }
             else if (GameState.Instance.currentMove == GameState.Movement.ComputerColouring)
             {
                 GameState.Instance.currentMove = GameState.Movement.ComputersChoice;
-                GameState.Instance.computer.Add(number1);
-                GameState.Instance.player.Add(number2);
+                AddNumbers(number2, number1);
             }
 
             firstNumberButton.Enabled = false;
             secondNumberButton.Enabled = false;
             updateNumbersLabels();
             Engine.Winner winner = Engine.CheckWinner(out sequence);
-            if (winner != Engine.Winner.None) 
+            if (winner != Engine.Winner.None)
             {
                 Form1.GameOver(winner, sequence);
                 GameState.Instance.gameOver = true;
@@ -197,18 +195,46 @@ namespace Szemeredi
             }
             nextRound();
         }
-        
+
+        private void AddNumbers(int playerNumber, int computerNumber)
+        {
+            updateDictionary(GameState.Instance.player, GameState.Instance.playerDifferences, playerNumber);
+            updateDictionary(GameState.Instance.computer, GameState.Instance.computerDifferences, computerNumber);
+
+            GameState.Instance.player.Add(playerNumber);
+            GameState.Instance.computer.Add(computerNumber);
+        }
+
+        private void updateDictionary(List<int> numbers, Dictionary<int, List<Tuple<int, int>>> dictionary, int addedNumber)
+        {
+            int n = numbers.Count;
+            if (n < 1)
+                return;
+
+            for (int i = 0; i < n; i++)
+            {
+                int difference = numbers.ElementAt(i) - addedNumber;
+                int r = Math.Abs(difference);
+                if (!dictionary.ContainsKey(r))
+                    dictionary.Add(r, new List<Tuple<int, int>>());
+                if (difference > 0)
+                    dictionary[r].Add(new Tuple<int, int>(addedNumber, numbers.ElementAt(i)));
+                else
+                    dictionary[r].Add(new Tuple<int, int>(numbers.ElementAt(i), addedNumber));
+            }
+        }
+
         private void nextRound()
         {
             firstNumberButton = null;
             secondNumberButton = null;
             GameState.Instance.chosen = new int[2];
             round++;
-            roundLabel.Text = "runda: " + round.ToString();    
-            if (GameState.Instance.availableNumbers.Count<2)
+            roundLabel.Text = "runda: " + round.ToString();
+            if (GameState.Instance.availableNumbers.Count < 2)
             {
                 Form1.GameOver(Engine.Winner.None);
-            }     
+            }
         }
 
         private void updateAction()

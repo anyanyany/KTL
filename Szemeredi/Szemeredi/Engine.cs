@@ -90,7 +90,7 @@ namespace Szemeredi
             return chosen;
         }
 
-        public static int ChooseNumber()
+        public static int ChooseNumberDifficult()
         {
             int[] lengths = new int[GameState.Instance.availableNumbers.Count];
             int maxLength = int.MinValue;
@@ -157,7 +157,7 @@ namespace Szemeredi
             return ColourNumberRandomly();
         }
 
-        public static int ColourNumber()
+        public static int ColourNumberDifficult()
         {
             int difference;
             List<int> sequence;
@@ -188,6 +188,7 @@ namespace Szemeredi
 
         public static int LengthOfSequence(List<int> numbers, out int difference, out List<int> sequence)
         {
+            //TODO: use GameState.Instance.playerDifferences and GameState.Instance.computerDifferences
             int length = -1;
             difference = -1;
             sequence = new List<int>();
