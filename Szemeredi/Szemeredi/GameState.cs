@@ -34,8 +34,8 @@ namespace Szemeredi
         public List<int> availableNumbers { get; set; }
         public List<int> player { get; set; }
         public List<int> computer { get; set; }
-        public Dictionary<int, List<Tuple<int, int>>> computerDifferences;
-        public Dictionary<int, List<Tuple<int, int>>> playerDifferences;
+        public Dictionary<int, List<Tuple<int, int>>> computerDifferences { get; set; }
+        public Dictionary<int, List<Tuple<int, int>>> playerDifferences { get; set; }
         public int[] chosen { get; set; }
         public Movement currentMove { get; set; }
         public Level level { get; set; }

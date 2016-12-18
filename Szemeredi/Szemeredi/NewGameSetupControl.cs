@@ -35,8 +35,6 @@ namespace Szemeredi
                 MessageBox.Show("Złe parametry n i k!", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (!Engine.CheckSzemeredisTheorem((int)NNumericUpDown.Value, (int)KNumericUpDown.Value))
-                MessageBox.Show("Dla podanych parametrów gra może się nie zakończyć!", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             
             if (easyLevelRadioButton.Checked)
                 level = GameState.Level.Easy;

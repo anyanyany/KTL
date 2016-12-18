@@ -198,32 +198,13 @@ namespace Szemeredi
 
         private void AddNumbers(int playerNumber, int computerNumber)
         {
-            updateDictionary(GameState.Instance.player, GameState.Instance.playerDifferences, playerNumber);
-            updateDictionary(GameState.Instance.computer, GameState.Instance.computerDifferences, computerNumber);
+            Engine.updateDictionary(GameState.Instance.player, GameState.Instance.playerDifferences, playerNumber);
+            Engine.updateDictionary(GameState.Instance.computer, GameState.Instance.computerDifferences, computerNumber);
 
             GameState.Instance.player.Add(playerNumber);
             GameState.Instance.computer.Add(computerNumber);
         }
-
-        private void updateDictionary(List<int> numbers, Dictionary<int, List<Tuple<int, int>>> dictionary, int addedNumber)
-        {
-            int n = numbers.Count;
-            if (n < 1)
-                return;
-
-            for (int i = 0; i < n; i++)
-            {
-                int difference = numbers.ElementAt(i) - addedNumber;
-                int r = Math.Abs(difference);
-                if (!dictionary.ContainsKey(r))
-                    dictionary.Add(r, new List<Tuple<int, int>>());
-                if (difference > 0)
-                    dictionary[r].Add(new Tuple<int, int>(addedNumber, numbers.ElementAt(i)));
-                else
-                    dictionary[r].Add(new Tuple<int, int>(numbers.ElementAt(i), addedNumber));
-            }
-        }
-
+       
         private void nextRound()
         {
             firstNumberButton = null;
