@@ -32,10 +32,11 @@ namespace Szemeredi
             int difference;
             List<int> pSequence;
             List<int> cSequence;
-            //int pLength = LengthOfSequence(GameState.Instance.player, out difference, out pSequence);
-            //int cLength = LengthOfSequence(GameState.Instance.computer, out difference, out cSequence);
-            int pLength = LengthOfSequence(Who.Player, out difference, out pSequence);
-            int cLength = LengthOfSequence(Who.Computer, out difference, out cSequence);
+            int pLength = LengthOfSequence(GameState.Instance.player, out difference, out pSequence);
+            int cLength = LengthOfSequence(GameState.Instance.computer, out difference, out cSequence);
+            //int pLength = LengthOfSequence(Who.Player, out difference, out pSequence);
+            //int cLength = LengthOfSequence(Who.Computer, out difference, out cSequence);
+            //Console.WriteLine("CHECK WINNER ---> player: " + pLength + "  computer: " + cLength);
 
             if (pLength < GameState.Instance.k && cLength < GameState.Instance.k)
                 return Winner.None;
@@ -56,21 +57,16 @@ namespace Szemeredi
             return GameState.Instance.availableNumbers.ElementAt(r.Next(0, GameState.Instance.availableNumbers.Count));
         }
 
-        public static int ChooseNumberNormally() 
+        public static int ChooseNumberNormally()
         {
             int[] lengths = new int[GameState.Instance.availableNumbers.Count];
             int maxLength = int.MinValue;
-            int difference;
-            List<int> sequence;
             int chosen = -1;
 
             for (int i = 0; i < GameState.Instance.availableNumbers.Count; i++)
             {
                 int n = GameState.Instance.availableNumbers[i];
-                List<int> numbers = new List<int>(GameState.Instance.computer);
-                numbers.Add(n);
-                int length = LengthOfSequence(numbers, out difference, out sequence);
-                //int length = LengthOfSequence(Who.Computer, out difference, out sequence, n);
+                int length = LengthOfExpandedSequence(Who.Computer, n);
                 lengths[i] = length;
                 if (length > maxLength)
                 {
@@ -82,11 +78,11 @@ namespace Szemeredi
             List<int> maxLengthNumbers = new List<int>();
             for (int i = 0; i < GameState.Instance.availableNumbers.Count; i++)
             {
-                if(lengths[i]==maxLength)
+                if (lengths[i] == maxLength)
                     maxLengthNumbers.Add(GameState.Instance.availableNumbers[i]);
-
             }
-            if(maxLengthNumbers.Count>1)
+
+            if (maxLengthNumbers.Count > 1)
             {
                 Random r = new Random();
                 chosen = maxLengthNumbers.ElementAt(r.Next(0, maxLengthNumbers.Count));
@@ -97,23 +93,13 @@ namespace Szemeredi
         public static int ChooseNumberDifficult()
         {
             int[] lengths = new int[GameState.Instance.availableNumbers.Count];
-            int difference;
-            List<int> sequence;
-
             var choicesList = new List<Tuple<int, int, int>>(); // <potencjalnie wybierana liczba, liczba p, liczba q
+
             for (int i = 0; i < GameState.Instance.availableNumbers.Count; i++)
             {
                 int n = GameState.Instance.availableNumbers[i];
-                List<int> numbers = new List<int>(GameState.Instance.computer);
-                numbers.Add(n);
-                int p = LengthOfSequence(numbers, out difference, out sequence);
-                //int p = LengthOfSequence(Who.Computer, out difference, out sequence, n);
-
-                numbers = new List<int>(GameState.Instance.player);
-                numbers.Add(n);
-                int q = LengthOfSequence(numbers, out difference, out sequence);
-                //int q = LengthOfSequence(Who.Player, out difference, out sequence, n);
-
+                int p = LengthOfExpandedSequence(Who.Computer, n);
+                int q = LengthOfExpandedSequence(Who.Player, n);
                 choicesList.Add(Tuple.Create(n, p, q));
             }
 
@@ -142,67 +128,26 @@ namespace Szemeredi
 
         public static int ColourNumberNormally()
         {
-            List<int> numbers = new List<int>(GameState.Instance.computer);
-            numbers.Add(GameState.Instance.chosen[0]);
-
-            int difference;
-            List<int> sequence;
-            int firstLength = LengthOfSequence(numbers, out difference, out sequence);
-
-            //int firstLength = LengthOfSequence(Who.Computer, out difference, out sequence, GameState.Instance.chosen[0]);
-
-            numbers = new List<int>(GameState.Instance.computer);
-            numbers.Add(GameState.Instance.chosen[1]);
-            int secondLength = LengthOfSequence(numbers, out difference, out sequence);
-
-            //int secondLength = LengthOfSequence(Who.Computer, out difference, out sequence, GameState.Instance.chosen[1]);
-
+            int firstLength = LengthOfExpandedSequence(Who.Computer, GameState.Instance.chosen[0]);
+            int secondLength = LengthOfExpandedSequence(Who.Computer, GameState.Instance.chosen[1]);
+            //Console.WriteLine("COLOUR ---> n= "+ GameState.Instance.chosen[0] +" len= "+ firstLength + " *** n= "+GameState.Instance.chosen[1] + " len= " + secondLength);
 
             if (firstLength > secondLength)
                 return 0;
             else if (firstLength < secondLength)
                 return 1;
-
             return ColourNumberRandomly();
         }
 
         public static int ColourNumberDifficult()
         {
-            int difference;
-            List<int> sequence;
-
-            /**/
-            List<int> computerNumbers = new List<int>(GameState.Instance.computer);
-            List<int> playerNumbers = new List<int>(GameState.Instance.player);
-
-            computerNumbers.Add(GameState.Instance.chosen[0]);          
-            playerNumbers.Add(GameState.Instance.chosen[1]);
-
-            int computerFirstLength = LengthOfSequence(computerNumbers, out difference, out sequence);
-            int playerFirstLength = LengthOfSequence(playerNumbers, out difference, out sequence);
-
-            computerNumbers = new List<int>(GameState.Instance.computer);
-            playerNumbers = new List<int>(GameState.Instance.player);
-
-            computerNumbers.Add(GameState.Instance.chosen[1]);
-            playerNumbers.Add(GameState.Instance.chosen[0]);
-
-            int computerSecondLength = LengthOfSequence(computerNumbers, out difference, out sequence);
-            int playerSecondLength = LengthOfSequence(playerNumbers, out difference, out sequence);
-            /**/
-
-            /*
-            int computerFirstLength = LengthOfSequence(Who.Computer, out difference, out sequence, GameState.Instance.chosen[0]);
-            int playerFirstLength = LengthOfSequence(Who.Player, out difference, out sequence, GameState.Instance.chosen[1]);
-
-            int computerSecondLength = LengthOfSequence(Who.Computer, out difference, out sequence, GameState.Instance.chosen[1]);
-            int playerSecondLength = LengthOfSequence(Who.Player, out difference, out sequence, GameState.Instance.chosen[0]);
-            */
-
+            int computerFirstLength = LengthOfExpandedSequence(Who.Computer, GameState.Instance.chosen[0]);
+            int playerFirstLength = LengthOfExpandedSequence(Who.Player, GameState.Instance.chosen[1]);
+            int computerSecondLength = LengthOfExpandedSequence(Who.Computer, GameState.Instance.chosen[1]);
+            int playerSecondLength = LengthOfExpandedSequence(Who.Player, GameState.Instance.chosen[0]);
             int max = (new List<int>() { playerFirstLength, computerFirstLength, playerSecondLength, computerSecondLength }).Max();
             if (playerFirstLength == max || computerFirstLength == max) return 0;
             return 1;
-            
         }
 
         public static int LengthOfSequence(List<int> numbers, out int difference, out List<int> sequence)
@@ -220,10 +165,15 @@ namespace Szemeredi
             {
                 for (int j = i + 1; j < n; j++)
                 {
-                    int r = Math.Abs(numbers.ElementAt(i) - numbers.ElementAt(j));
+                    int d = numbers.ElementAt(j) - numbers.ElementAt(i);
+                    int r = Math.Abs(d);
                     if (!dictionary.ContainsKey(r))
                         dictionary.Add(r, new List<Tuple<int, int>>());
-                    dictionary[r].Add(new Tuple<int, int>(numbers.ElementAt(i), numbers.ElementAt(j)));
+                    if (d > 0)
+                        dictionary[r].Add(new Tuple<int, int>(numbers.ElementAt(i), numbers.ElementAt(j)));
+                    else
+                        dictionary[r].Add(new Tuple<int, int>(numbers.ElementAt(j), numbers.ElementAt(i)));
+                    dictionary[r].Sort((x, y) => x.Item1.CompareTo(y.Item1));
                 }
             }
 
@@ -260,16 +210,36 @@ namespace Szemeredi
             return length;
         }
 
-
-        /*public static int LengthOfSequence(Who who, out int difference, out List<int> sequence, int addedNumber = -1)
+        public static int LengthOfExpandedSequence(Who who, int addedNumber)
         {
             int length = -1;
-            difference = -1;
-            sequence = new List<int>();
+            int difference = -1;
+            List<int> sequence = new List<int>();
+            List<int> numbers;
+
+            if (who == Who.Computer)
+                numbers = new List<int>(GameState.Instance.computer);
+            else
+                numbers = new List<int>(GameState.Instance.player);
+
+            if (numbers.Count == 0)
+                return length;
+
+            numbers.Add(addedNumber);
+
+            return LengthOfSequence(numbers, out difference, out sequence);
+        }
+
+        /*
+        public static int LengthOfExpandedSequence(Who who, int addedNumber)
+        {
+            int length = -1;
+            int difference = -1;
+            List<int> sequence = new List<int>();
             List<int> numbers;
             Dictionary<int, List<Tuple<int, int>>> dictionary;
 
-            if (who==Who.Computer)
+            if (who == Who.Computer)
             {
                 numbers = new List<int>(GameState.Instance.computer);
                 dictionary = new Dictionary<int, List<Tuple<int, int>>>(GameState.Instance.computerDifferences);
@@ -283,11 +253,8 @@ namespace Szemeredi
             if (numbers.Count == 0)
                 return length;
 
-            if (addedNumber != -1)
-            {
-                updateDictionary(numbers, dictionary, addedNumber);
-                numbers.Add(addedNumber);
-            }
+            updateDictionary(numbers, dictionary, addedNumber);
+            numbers.Add(addedNumber);
 
             int n = numbers.Count;
 
@@ -322,8 +289,8 @@ namespace Szemeredi
             }
             sequence.Reverse();
             return length;
-        }*/
-
+        }
+        
 
         public static int LengthOfSequence(Who who, out int difference, out List<int> sequence)
         {
@@ -335,13 +302,13 @@ namespace Szemeredi
 
             if (who == Who.Computer)
             {
-                numbers = GameState.Instance.computer;
-                dictionary = GameState.Instance.computerDifferences;
+                numbers = new List<int>(GameState.Instance.computer);
+                dictionary = new Dictionary<int, List<Tuple<int, int>>>(GameState.Instance.computerDifferences);
             }
             else
             {
-                numbers = GameState.Instance.player;
-                dictionary = GameState.Instance.playerDifferences;
+                numbers = new List<int>(GameState.Instance.player);
+                dictionary = new Dictionary<int, List<Tuple<int, int>>>(GameState.Instance.playerDifferences);
             }
 
             if (numbers.Count == 0)
@@ -381,6 +348,7 @@ namespace Szemeredi
             sequence.Reverse();
             return length;
         }
+        */
 
         public static void updateDictionary(List<int> numbers, Dictionary<int, List<Tuple<int, int>>> dictionary, int addedNumber)
         {
@@ -390,14 +358,16 @@ namespace Szemeredi
 
             for (int i = 0; i < n; i++)
             {
-                int difference = numbers.ElementAt(i) - addedNumber;
+                int element = numbers.ElementAt(i);
+                int difference = element - addedNumber;
                 int r = Math.Abs(difference);
                 if (!dictionary.ContainsKey(r))
                     dictionary.Add(r, new List<Tuple<int, int>>());
                 if (difference > 0)
-                    dictionary[r].Add(new Tuple<int, int>(addedNumber, numbers.ElementAt(i)));
+                    dictionary[r].Add(new Tuple<int, int>(addedNumber, element));
                 else
-                    dictionary[r].Add(new Tuple<int, int>(numbers.ElementAt(i), addedNumber));
+                    dictionary[r].Add(new Tuple<int, int>(element, addedNumber));
+                dictionary[r].Sort((x, y) => x.Item1.CompareTo(y.Item1));
             }
         }
     }
