@@ -38,6 +38,9 @@ namespace Szemeredi
             GameState.Instance.chosen = new int[2];
             GameState.Instance.currentMove = playerFirstMove ? GameState.Movement.PlayersChoice : GameState.Movement.ComputersChoice;
 
+            GameState.Instance.computerDifferences = new Dictionary<int, List<Tuple<int, int>>>();
+            GameState.Instance.playerDifferences = new Dictionary<int, List<Tuple<int, int>>>();
+
             GameState.Instance.level = level;
             GameState.Instance.gameOver = false;
 

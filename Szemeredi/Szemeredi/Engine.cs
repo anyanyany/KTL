@@ -250,6 +250,12 @@ namespace Szemeredi
                 dictionary = new Dictionary<int, List<Tuple<int, int>>>(GameState.Instance.playerDifferences);
             }
 
+            foreach (var key in dictionary.Keys.ToList())
+            {
+                dictionary[key] = new List<Tuple<int, int>>(dictionary[key]);
+            }
+
+
             if (numbers.Count == 0)
                 return length;
 
