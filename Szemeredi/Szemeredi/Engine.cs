@@ -117,6 +117,10 @@ namespace Szemeredi
             {
                 choice = choicesList.OrderByDescending(t => t.Item3).Last();
             }
+
+            var considerated = choicesList.Where(t => t.Item2 == choice.Item2 && t.Item3 == choice.Item3);
+            var rand = new Random();
+            choice = considerated.ElementAt(rand.Next(0, considerated.Count()));
             return choice.Item1;
         }
 
