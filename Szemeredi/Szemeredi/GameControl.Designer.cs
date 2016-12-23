@@ -102,8 +102,8 @@
             // bottomPanel
             // 
             this.bottomPanel.ColumnCount = 4;
-            this.bottomPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13F));
-            this.bottomPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67F));
+            this.bottomPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.bottomPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
             this.bottomPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12F));
             this.bottomPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8F));
             this.bottomPanel.Controls.Add(this.levelLabel, 2, 0);
@@ -156,10 +156,10 @@
             this.actionLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.actionLabel.Font = new System.Drawing.Font("Caviar Dreams", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.actionLabel.ForeColor = System.Drawing.Color.White;
-            this.actionLabel.Location = new System.Drawing.Point(120, 3);
+            this.actionLabel.Location = new System.Drawing.Point(138, 3);
             this.actionLabel.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.actionLabel.Name = "actionLabel";
-            this.actionLabel.Size = new System.Drawing.Size(600, 57);
+            this.actionLabel.Size = new System.Drawing.Size(582, 57);
             this.actionLabel.TabIndex = 4;
             this.actionLabel.Text = "ruch: gracz wybiera dwie liczby";
             this.actionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -174,7 +174,7 @@
             this.roundLabel.Location = new System.Drawing.Point(0, 3);
             this.roundLabel.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.roundLabel.Name = "roundLabel";
-            this.roundLabel.Size = new System.Drawing.Size(117, 57);
+            this.roundLabel.Size = new System.Drawing.Size(135, 57);
             this.roundLabel.TabIndex = 3;
             this.roundLabel.Text = "runda: 1";
             this.roundLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
