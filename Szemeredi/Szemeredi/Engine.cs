@@ -145,9 +145,9 @@ namespace Szemeredi
         {
             List<int> sequence;
             int computerFirstLength = LengthOfSequence(Who.Computer, out sequence, GameState.Instance.chosen[0]);
-            int playerFirstLength = LengthOfSequence(Who.Player, out sequence, GameState.Instance.chosen[1]);
+            int playerFirstLength = LengthOfSequence(Who.Player, out sequence, GameState.Instance.chosen[0]);
             int computerSecondLength = LengthOfSequence(Who.Computer, out sequence, GameState.Instance.chosen[1]);
-            int playerSecondLength = LengthOfSequence(Who.Player, out sequence, GameState.Instance.chosen[0]);
+            int playerSecondLength = LengthOfSequence(Who.Player, out sequence, GameState.Instance.chosen[1]);
             int max = (new List<int>() { playerFirstLength, computerFirstLength, playerSecondLength, computerSecondLength }).Max();
             if (playerFirstLength == max || computerFirstLength == max) return 0;
             return 1;
