@@ -217,6 +217,7 @@ namespace Szemeredi
             roundLabel.Text = "runda: " + round.ToString();
             if (GameState.Instance.availableNumbers.Count < 2)
             {
+                GameState.Instance.gameOver = true;
                 Form1.GameOver(Engine.Winner.None);
             }
         }
